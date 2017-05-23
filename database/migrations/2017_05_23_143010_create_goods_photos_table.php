@@ -15,10 +15,12 @@ class CreateGoodsPhotosTable extends Migration
     {
         Schema::create('goods_photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_good');
+            $table->integer('good_id')->unsigned()->default(1);
             $table->string('photo');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->foreign('good_id')->references('id')->on('goods');
         });
     }
 
@@ -29,6 +31,10 @@ class CreateGoodsPhotosTable extends Migration
      */
     public function down()
     {
+        Schema::table('goods_photos', function(Blueprint $table) {
+            $table->dropForeign('goods_photos_good_id_foreign');
+        });
+
         Schema::dropIfExists('goods_photos');
     }
 }

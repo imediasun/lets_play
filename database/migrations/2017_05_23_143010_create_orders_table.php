@@ -15,11 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_good');
-            $table->integer('quantaty');
+            $table->integer('good_id')->unsigned()->default(1);
+            $table->integer('quantity');
             $table->string('status');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+
+            $table->foreign('good_id')->references('id')->on('goods');
         });
     }
 
@@ -30,6 +32,10 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        Schema::table('orders', function(Blueprint $table) {
+            $table->dropForeign('orders_good_id_foreign');
+        });
+
         Schema::dropIfExists('orders');
     }
 }
