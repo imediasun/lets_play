@@ -14,8 +14,8 @@ class CreateApplicationUserTable extends Migration
     public function up()
     {
         Schema::create('application_user', function (Blueprint $table) {
-            $table->integer('application_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('application_id')->unsigned();
             $table->string('authorization_code')->nullable();
 
             $table->primary(['application_id', 'user_id']);

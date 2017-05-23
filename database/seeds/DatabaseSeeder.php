@@ -130,35 +130,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        DB::table('center_admin_categories')->insert([
-            [
-                'parent_id' => 0,
-                'name' => 'Trade center',
-                'icon' => 'fa-users',
-                'link' => '/center_admin/trade_center'
-            ],
-            [
-                'parent_id' => 1,
-                'name' => 'Parking prices',
-                'icon' => 'fa-registered',
-                'link' => '/center_admin/parking_payment'
-            ],
-
-            [
-                'parent_id' => 1,
-                'name' => 'Statistics',
-                'icon' => 'fa-gift',
-                'link' => '/center_admin/statistic'
-            ],
-            [
-                'parent_id' => 0,
-                'name' => 'Promotions',
-                'icon' => 'fa-envelope',
-                'link' => '/center_admin/sales'
-            ]
-        ]);
-
-
         DB::table('admin_categories')->insert([
             [
                 'parent_id' => 0,

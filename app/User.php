@@ -37,17 +37,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role', 'role_user');
     }
 
-    public function status()
-    {
-        return $this->hasOne('App\Customers_statuses');
-    }
-
-    public function tradecentre()
-    {
-        return $this->belongsToMany('App\Tradecentre', 'user_id');
-    }
-
-
     public function canDo($permission, $require = false)
     {
         if (is_array($permission)) {
