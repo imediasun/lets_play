@@ -42,12 +42,6 @@ Route::group(['prefix' => 'admin','middleware'=>['web','auth']],function(){
     Route::get('/edit_center/{id}','Admin\TradeCenterController@edit_center');
     Route::post('/update_center','Admin\TradeCenterController@update_center')->name('add_center');
 
-    Route::get('/parking_prices/{id}','Admin\TradeCenterController@parking_prices');
-    Route::post('/update_center_price','Admin\TradeCenterController@update_center_price');
-
-    Route::get('/centers/{center_id}/parking_prices/{id}/delete', 'Admin\TradeCenterController@parking_price_delete')
-        ->name('parking_price_delete');
-
 
     Route::get('/add_adv_section','Admin\AdvController@index');
     Route::post('/add_adv','Admin\AdvController@add_adv');
@@ -113,7 +107,6 @@ Route::group([
 
     // Clients
     $router->resource('clients', 'ClientsController');
-    $router->resource('parking', 'ParkingController');
 
 });
 

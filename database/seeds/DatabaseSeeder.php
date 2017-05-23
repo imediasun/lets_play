@@ -116,12 +116,6 @@ class DatabaseSeeder extends Seeder
                 'link' => '/admin/add_logos'
             ],
             [
-                'parent_id' => 3,
-                'name' => 'Parking prices of center',
-                'icon' => 'fa-envelope',
-                'link' => '/admin/edit_trade_center/parking_prices'
-            ],
-            [
                 'parent_id' => 7,
                 'name' => 'Add ad',
                 'icon' => 'fa-envelope',
