@@ -35,6 +35,8 @@ Route::get('/logout',['uses' => 'Admin\IndexController@index','as' => 'adminInde
 //admin
 Route::group(['prefix' => 'admin','middleware'=>['web','auth']],function(){
 
+    Route::get('/test','Admin\TestController@index');
+
     Route::get('/add_trade_center','Admin\TradeCenterController@index');
     Route::post('/add_center','Admin\TradeCenterController@add_center')->name('add_center');
 
