@@ -34,15 +34,20 @@ Route::get('/logout',['uses' => 'Admin\IndexController@index','as' => 'adminInde
 
 //admin
 Route::group(['prefix' => 'admin','middleware'=>['web','auth']],function(){
-
+    Route::post('/add_clients_group', 'Admin\ClientsController@add_clients_group');
+    Route::post('/edit_clients_group', 'Admin\ClientsController@edit_clients_group');
+    Route::post('/add_deal', 'Admin\ClientsController@add_deal');
+    Route::post('/edit_deal', 'Admin\ClientsController@edit_deal');
+    Route::post('/func_edit_activation_clents_group', 'Admin\ClientsController@func_edit_activation_clents_group');
+    Route::post('/func_delete_deal', 'Admin\ClientsController@func_delete_deal');
+    Route::post('/func_delete_clients_group', 'Admin\ClientsController@func_delete_clients_group');
+    
+    
+    
     Route::get('/test','Admin\TestController@index');
+    Route::get('/clients_groups','Admin\ClientsController@clients_groups')->name('clients_groups');
+    Route::get('/deals_names','Admin\ClientsController@deals_names')->name('deals_names');
 
-    Route::get('/add_trade_center','Admin\TradeCenterController@index');
-    Route::post('/add_center','Admin\TradeCenterController@add_center')->name('add_center');
-
-    Route::get('/edit_trade_center/{operation}','Admin\TradeCenterController@edit');
-    Route::get('/edit_center/{id}','Admin\TradeCenterController@edit_center');
-    Route::post('/update_center','Admin\TradeCenterController@update_center')->name('add_center');
 
 
     Route::get('/add_adv_section','Admin\AdvController@index');

@@ -24,6 +24,7 @@ class SuperAdminIndexController extends AdminController
 
         $this->title = 'Панель администратора';
 
+
         
         return $this->renderOutput($data);
     }

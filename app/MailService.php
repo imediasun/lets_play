@@ -28,7 +28,7 @@ class MailService
 $this->mailer->raw($mail['message'], function (Message $m) use ($user) {
             $m->to($user->email)->subject($mail['message']);
         });
-            dd($user->email);
+        
         }
 
     }

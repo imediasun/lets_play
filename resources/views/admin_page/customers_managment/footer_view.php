@@ -1,132 +1,152 @@
-
-
-<!-- FOOTER -->
-<!--===================================================-->
-<footer id="footer">
-
-    <!-- Visible when footer positions are fixed -->
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <div class="show-fixed pull-right">
-        <ul class="footer-list list-inline">
-            <li>
-                <p class="text-sm">SEO Proggres</p>
-                <div class="progress progress-sm progress-light-base">
-                    <div style="width: 80%" class="progress-bar progress-bar-danger"></div>
-                </div>
-            </li>
-
-            <li>
-                <p class="text-sm">Online Tutorial</p>
-                <div class="progress progress-sm progress-light-base">
-                    <div style="width: 80%" class="progress-bar progress-bar-primary"></div>
-                </div>
-            </li>
-            <li>
-                <button class="btn btn-sm btn-dark btn-active-success">Checkout</button>
-            </li>
-        </ul>
-    </div>
-
-
-
-    <!-- Visible when footer positions are static -->
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <div class="hide-fixed pull-right pad-rgt">Currently v2.2</div>
-
-
-
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <!-- Remove the class name "show-fixed" and "hide-fixed" to make the content always appears. -->
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-    <p class="pad-lft">&#0169; 2015 Your Company</p>
-
-
-
-</footer>
-<!--===================================================-->
-<!-- END FOOTER -->
-
-
-<!-- SCROLL TOP BUTTON -->
-<!--===================================================-->
-<button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
-<!--===================================================-->
-
-
-
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<footer class="footer"> © 2017 Monster Admin by wrappixel.com </footer>
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ============================================================== -->
 </div>
-<!--===================================================-->
-<!-- END OF CONTAINER -->
-
-
-<!--JAVASCRIPT-->
-<!--=================================================-->
-
-
-
-
-<!--BootstrapJS [ RECOMMENDED ]-->
-<script src="/jasmine/js/bootstrap.min.js"></script>
-
-
-<!--Fast Click [ OPTIONAL ]-->
-<script src="/jasmine/plugins/fast-click/fastclick.min.js"></script>
-
-
-<!--Jasmine Admin [ RECOMMENDED ]-->
-<script src="/jasmine/js/scripts.js"></script>
-
-
-<!--Switchery [ OPTIONAL ]-->
-<script src="/jasmine/plugins/switchery/switchery.min.js"></script>
-
-
-<!--Bootstrap Select [ OPTIONAL ]-->
-<script src="/jasmine/plugins/bootstrap-select/bootstrap-select.min.js"></script>
-
-<!--DataTables [ OPTIONAL ]-->
-<script src="/jasmine/plugins/datatables/media/js/jquery.dataTables.js"></script>
-<script src="/jasmine/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
-<script src="/jasmine/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-
-<!--Demo script [ DEMONSTRATION ]-->
-<script src="/jasmine/js/demo/jasmine.js"></script>
-
-<!--DataTables Sample [ SAMPLE ]-->
-<script src="/jasmine/js/demo/tables-datatables.js"></script>
-
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="/assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="/main/js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="/main/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="/main/js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="/main/js/custom.min.js"></script>
+<!-- This is data table -->
+<script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
 <script>
-    var resizefunc = [];
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
 </script>
 
-<!-- jQuery  -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/detect.js"></script>
-<script src="/assets/js/fastclick.js"></script>
-<script src="/assets/js/jquery.blockUI.js"></script>
-<script src="/assets/js/waves.js"></script>
-<script src="/assets/js/jquery.nicescroll.js"></script>
-<script src="/assets/js/jquery.slimscroll.js"></script>
-<script src="/assets/js/jquery.scrollTo.min.js"></script>
 
-<!-- KNOB JS -->
-<!--[if IE]>
-<script type="text/javascript" src="/assets/plugins/jquery-knob/excanvas.js"></script>
-<![endif]-->
-<script src="/assets/plugins/jquery-knob/jquery.knob.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-<!--Morris Chart-->
-<script src="/assets/plugins/morris/morris.min.js"></script>
-<script src="/assets/plugins/raphael/raphael-min.js"></script>
+    $('.stl option').click(function () {
 
-<!-- Dashboard init -->
-<script src="/assets/pages/jquery.dashboard.js"></script>
+        var role = $(this).val()
+        var user = $(this).parent('.stl').parent('td').find('.user_id').val();
 
-<!-- App js -->
-<script src="/assets/js/jquery.core.js"></script>
-<script src="/assets/js/jquery.app.js"></script>
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: '/admin/func_update_role',
+            data: {role: role, user: user}, // serializes the form's elements.
+            success: function (data) {
+                alert(data); // show response from the php script.
+            }
+        });
+    });
 
+    $('.delete_btn').click(function () {
+        alert();
+
+        var txt;
+        var r = confirm("Видалити користувача ?");
+
+        if (r == true) {
+            var user = $(this).parent('td').find('.user_id').val();
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: '/admin/func_delete_user',
+                data: {user: user}, // serializes the form's elements.
+                success: function (data) {
+
+                    if (data == 'deleted') {
+                        alert('користувач видален'); // show response from the php script.}
+                    } else {
+                        alert('помилка !')
+                    }
+                    location.reload();
+                }
+
+            });
+        } else {
+            txt = "Ви вибрали відмінити видалення";
+        }
+    });
+</script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 </body>
+
 </html>

@@ -44,7 +44,7 @@ class CustomersController extends IndexController
             ->orderBy('updated_at', 'desc')
             ->get();*/
         $data['nav']['menu']=parent::menu();
-        /*$data['types']=Type_of_good::get();*/
+       
         $data['users']=User::get();
         $data['roles']=Role::get();
         $this->template='admin_page/customers_managment';

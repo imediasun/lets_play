@@ -5509,7 +5509,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
       templateVars.stylesheets = html;
 
       return wysihtml5.lang.string(
-        '<!DOCTYPE html><html><head>'
+        '<!DOCTYPE html>  <html><head>'
         + '<meta charset="#{charset}">#{stylesheets}</head>'
         + '<body></body></html>'
       ).interpolate(templateVars);
