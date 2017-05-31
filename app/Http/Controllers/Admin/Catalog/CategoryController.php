@@ -36,17 +36,26 @@ class CategoryController extends IndexController
      */
     public function create()
     {
-        //
+        $this->user = Auth::user();
+        $data['nav']['menu'] = parent::menu();
+
+        $this->template = 'admin_page/catalog/category/create';
+
+        return $this->renderOutput($data);
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryFormRequest $request
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryFormRequest $request, Category $category)
     {
-        //
+        $category = $category->create($request->all());
+
+        return redirect()
+            ->route('admin.catalog.categories.index', [$category]);
     }
 
     /**

@@ -11,11 +11,11 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-6 col-8 align-self-center">
-                <h3 class="text-themecolor m-b-0 m-t-0">Редактирование</h3>
+                <h3 class="text-themecolor m-b-0 m-t-0">Создание</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= route('super_admin') ?>">Home</a></li>
                     <li class="breadcrumb-item"><a href="<?= route('admin.catalog.categories.index') ?>">Список категорий</a></li>
-                    <li class="breadcrumb-item active">Редактирование категории</li>
+                    <li class="breadcrumb-item active">Создание категории</li>
                 </ol>
             </div>
             <div class="col-md-6 col-4 align-self-center">
@@ -35,23 +35,23 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-block">
-                        <h4 class="card-title">Редактирование</h4>
-                        <h6 class="card-subtitle">Редактирование категории</h6>
+                        <h4 class="card-title">Создание</h4>
+                        <h6 class="card-subtitle">Создание категории</h6>
                         <div class="table-responsive m-t-40">
-                            <form class="form" action="<?= route('admin.catalog.categories.update', ['id' => $category->id]) ?>" method="post">
-                                <input name="_method" type="hidden" value="PATCH">
+                            <form class="form" action="<?= route('admin.catalog.categories.store') ?>" method="post">
                                 <input name="_token" type="hidden" value="<?= csrf_token() ?>">
+                                <input name="parent_id" type="hidden" value="0">
 
                                 <div class="form-group m-t-40 row">
                                     <label for="name" class="col-2 col-form-label">Название категории</label>
                                     <div class="col-10">
-                                        <input name="name" type="text" class="form-control" value="<?= $category->name ?>">
+                                        <input name="name" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-t-40 row">
                                     <label for="description" class="col-2 col-form-label">Описание</label>
                                     <div class="col-10">
-                                        <input name="description" type="text" class="form-control" value="<?= $category->description ?>">
+                                        <input name="description" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-b-0">
