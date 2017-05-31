@@ -3,8 +3,7 @@
 Auth::routes();
 Route::get('/', 'MainController@index');
 
-Route::get('/session',function(){
-
+Route::get('/session', function () {
     dd(csrf_token());
 });
 
@@ -30,10 +29,10 @@ Route::get('/not_yours', function () {
     return view('not_yours');
 })->name('not_yours');
 
-Route::get('/logout',['uses' => 'Admin\IndexController@index','as' => 'adminIndex']);
+Route::get('/logout', ['uses' => 'Admin\IndexController@index', 'as' => 'adminIndex']);
 
 //admin
-Route::group(['prefix' => 'admin','middleware'=>['web','auth']],function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
     Route::post('/add_clients_group', 'Admin\ClientsController@add_clients_group');
     Route::post('/edit_clients_group', 'Admin\ClientsController@edit_clients_group');
     Route::post('/add_deal', 'Admin\ClientsController@add_deal');
@@ -41,85 +40,65 @@ Route::group(['prefix' => 'admin','middleware'=>['web','auth']],function(){
     Route::post('/func_edit_activation_clents_group', 'Admin\ClientsController@func_edit_activation_clents_group');
     Route::post('/func_delete_deal', 'Admin\ClientsController@func_delete_deal');
     Route::post('/func_delete_clients_group', 'Admin\ClientsController@func_delete_clients_group');
-    
-    
-    
-    Route::get('/test','Admin\TestController@index');
-    Route::get('/clients_groups','Admin\ClientsController@clients_groups')->name('clients_groups');
-    Route::get('/deals_names','Admin\ClientsController@deals_names')->name('deals_names');
 
 
+    Route::get('/test', 'Admin\TestController@index');
+    Route::get('/clients_groups', 'Admin\ClientsController@clients_groups')->name('clients_groups');
+    Route::get('/deals_names', 'Admin\ClientsController@deals_names')->name('deals_names');
 
-    Route::get('/add_adv_section','Admin\AdvController@index');
-    Route::post('/add_adv','Admin\AdvController@add_adv');
 
-    Route::get('/edit_adv_section/{operation}','Admin\AdvController@edit');
-    Route::get('/edit_adv/{id}','Admin\AdvController@edit_adv');
-    Route::post('/update_adv','Admin\AdvController@update_adv');
+    Route::get('/add_adv_section', 'Admin\AdvController@index');
+    Route::post('/add_adv', 'Admin\AdvController@add_adv');
+
+    Route::get('/edit_adv_section/{operation}', 'Admin\AdvController@edit');
+    Route::get('/edit_adv/{id}', 'Admin\AdvController@edit_adv');
+    Route::post('/update_adv', 'Admin\AdvController@update_adv');
 
 
     //admin
-    Route::get('/super_admin','Admin\SuperAdminIndexController@index')->name('super_admin');
-    Route::get('/shop_admin','Admin\ShopAdminIndexController@index')->name('shop_admin');
-    Route::get('/center_admin','Admin\CenterAdminIndexController@index')->name('center_admin');
-    Route::get('/',['uses' => 'Admin\IndexController@index','as' => 'adminIndex']);
+    Route::get('/super_admin', 'Admin\SuperAdminIndexController@index')->name('super_admin');
+    Route::get('/shop_admin', 'Admin\ShopAdminIndexController@index')->name('shop_admin');
+    Route::get('/center_admin', 'Admin\CenterAdminIndexController@index')->name('center_admin');
+    Route::get('/', ['uses' => 'Admin\IndexController@index', 'as' => 'adminIndex']);
     Route::post('/func_update_role', 'FunctionsController@role');
     Route::post('/func_delete_user', 'FunctionsController@delete_user');
 
-    Route::get('/add_logos','Admin\PertnersController@add_logos');
-    Route::get('/del_logos','Admin\PertnersController@del_logos');
-    Route::get('/categories','Admin\CategoriesController@index');
-    Route::get('/partners','Admin\PertnersController@index');
-    Route::get('/add_category','Admin\CategoriesController@add_category');
-    Route::resource('/customers_managment','Admin\CustomersController');
+    Route::get('/add_logos', 'Admin\PertnersController@add_logos');
+    Route::get('/del_logos', 'Admin\PertnersController@del_logos');
+    Route::get('/categories', 'Admin\CategoriesController@index');
+    Route::get('/partners', 'Admin\PertnersController@index');
+    Route::get('/add_category', 'Admin\CategoriesController@add_category');
+    Route::resource('/customers_managment', 'Admin\CustomersController');
 });
 
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
-Route::post('/add_comment','FunctionsController@addComment')->name('add_comment');
-Route::post('/add_question_answer','FunctionsController@addQuestion_answer')->name('add_question_answer');
-Route::post('/add_question','FunctionsController@addQuestion')->name('add_question');
-Route::post('/delete_question','FunctionsController@deleteQuestion')->name('delete_question');
-Route::post('/delete_logotype','FunctionsController@deleteLogotype');
-Route::post('/delete_comment','FunctionsController@deleteComment')->name('delete_comment');
-Route::post('/add_category','FunctionsController@addCategory')->name('add_category');
-Route::post('/update_user_info','FunctionsController@update_user_info')->name('update_user_info');
-Route::post('/update_customer_info','FunctionsController@update_customer_info')->name('update_customer_info');
-Route::post('/func_change_status','FunctionsController@func_change_status');
-Route::post('/func_like_change','FunctionsController@func_like_change');
-Route::get('/func_like_delete/{id}/{user}','FunctionsController@func_like_delete')->name('func_like_delete');
+Route::post('/add_comment', 'FunctionsController@addComment')->name('add_comment');
+Route::post('/add_question_answer', 'FunctionsController@addQuestion_answer')->name('add_question_answer');
+Route::post('/add_question', 'FunctionsController@addQuestion')->name('add_question');
+Route::post('/delete_question', 'FunctionsController@deleteQuestion')->name('delete_question');
+Route::post('/delete_logotype', 'FunctionsController@deleteLogotype');
+Route::post('/delete_comment', 'FunctionsController@deleteComment')->name('delete_comment');
+Route::post('/add_category', 'FunctionsController@addCategory')->name('add_category');
+Route::post('/update_user_info', 'FunctionsController@update_user_info')->name('update_user_info');
+Route::post('/update_customer_info', 'FunctionsController@update_customer_info')->name('update_customer_info');
+Route::post('/func_change_status', 'FunctionsController@func_change_status');
+Route::post('/func_like_change', 'FunctionsController@func_like_change');
+Route::get('/func_like_delete/{id}/{user}', 'FunctionsController@func_like_delete')->name('func_like_delete');
 
 
-$router->group(['prefix' => 'api/v1'], function ($router) {
-    // Аутентификация приложений...
-    $router->post('/auth/app', 'Api\AuthController@authenticateApp');
-
-    // Аутентификация пользователей...
-    $router->post('/auth/user', 'Api\AuthController@authenticateUser')->middleware('auth.api.app');
-    $router->post('/auth/user/logout', 'Api\AuthController@logoutUser')->middleware('auth.api.user');
-
-    // Тестовые  маршруты
-    $router->post('/application-data', 'Api\HomeController@appData')->middleware('auth.api.app');
-    $router->get('/user-data', 'Api\HomeController@userData');
-});
-
-// -----------------------------------------------------------
-// 23.05.2017
 Route::group([
-    'as' => 'api.',
-    'prefix' => 'api/v1',
-    'namespace' => 'Api',
-    //'middleware' => ['web','auth']
-], function($router) {
+    'as'         => 'admin.',
+    'prefix'     => 'admin',
+    'namespace'  => 'Admin',
+    'middleware' => ['web', 'auth'],
+], function () {
 
-    // Clients
-    $router->resource('clients', 'ClientsController');
+    Route::group(['namespace' => 'Customer'], function () {
+
+        Route::resource('customers', 'CustomerController');
+
+    });
 
 });
 
-
-// авторизация приложения для доступа к данным пользователя...
-$router->get('/authorize', 'HomeController@showAuthorizationForm')->middleware('web');
-$router->post('/authorize', 'HomeController@authorizeApp')->middleware('web');
-
-Route::get('/home', 'HomeController@index');
