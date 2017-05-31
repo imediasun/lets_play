@@ -11,10 +11,10 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-6 col-8 align-self-center">
-                <h3 class="text-themecolor m-b-0 m-t-0">Покупатели</h3>
+                <h3 class="text-themecolor m-b-0 m-t-0">Группы покупателей</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= route('super_admin') ?>">Home</a></li>
-                    <li class="breadcrumb-item active">Список покупателей</li>
+                    <li class="breadcrumb-item active">Список групп покупателей</li>
                 </ol>
             </div>
             <div class="col-md-6 col-4 align-self-center">
@@ -34,15 +34,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-block">
-                        <h4 class="card-title">Покупатели</h4>
-                        <h6 class="card-subtitle">Список покупателей</h6>
+                        <h4 class="card-title">Группы покупателей</h4>
+                        <h6 class="card-subtitle">Список групп покупателей</h6>
                         <div class="table-responsive m-t-40">
                             <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Покупатель</th>
-                                    <th class="min-tablet">E-Mail</th>
-                                    <th class="min-tablet">Группа</th>
+                                    <th>Название группы</th>
+                                    <th class="min-tablet">Описание</th>
                                     <th class="min-tablet">Активация</th>
                                     <th class="min-desktop">Действие</th>
                                 </tr>
@@ -50,15 +49,14 @@
 
                                 <tbody>
                                 <?php
-                                foreach ($customers as $customer) {
+                                foreach ($groups as $group) {
                                     ?>
                                     <tr>
-                                        <td><?= $customer->first_name . ' ' . $customer->last_name ?></td>
-                                        <td><?= $customer->email ?></td>
-                                        <td><?= $customer->group->name ?></td>
+                                        <td><?= $group->name ?></td>
+                                        <td><?= $group->description ?></td>
                                         <td>
                                             <?php
-                                            if ($customer->active == 1) {
+                                            if ($group->active == 1) {
                                                 ?>
                                                 <input type="checkbox" checked class="activated_clients_group js-switch" data-color="#7460ee"/>
                                                 <?php
@@ -71,7 +69,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-icon fa fa-edit"
-                                               href="<?= route('admin.customer.customers.edit', ['id' => $customer->id]) ?>"
+                                               href="<?= route('admin.customer.groups.edit', ['id' => $group->id]) ?>"
                                                data-toggle="tooltip"
                                                data-original-title="Редактировать"
                                             ></a>

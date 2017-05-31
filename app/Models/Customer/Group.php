@@ -5,23 +5,24 @@ namespace App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Customer
+ * Class Group
  * @package App\Models\Customer
  */
-class Customer extends Model
+class Group extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'customers';
+    protected $table = 'customers_groups';
 
     /**
-     * Get the group that owns the customer.
+     * Get the customers for the group.
      */
-    public function group()
+    public function customers()
     {
-        return $this->belongsTo(Group::class);
+        return $this->hasMany(Customer::class, 'group_id');
     }
+
 }

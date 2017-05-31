@@ -94,9 +94,10 @@ Route::group([
     'middleware' => ['web', 'auth'],
 ], function () {
 
-    Route::group(['namespace' => 'Customer'], function () {
+    Route::group(['as' => 'customer.', 'namespace' => 'Customer'], function () {
 
         Route::resource('customers', 'CustomerController');
+        Route::resource('groups', 'GroupController');
 
     });
 

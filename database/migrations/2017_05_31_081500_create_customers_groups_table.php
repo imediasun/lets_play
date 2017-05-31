@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomersTable extends Migration
+class CreateCustomersGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,14 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('customers_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('group_id');
-            $table->string('email')->required();
-            $table->string('phone')->required();
-            $table->string('first_name')->required();
-            $table->string('last_name')->required();
+            $table->string('name')->required();
+            $table->string('description')->nullable();
             $table->boolean('active')->default(0);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-
-            $table->foreign('group_id')
-                ->references('id')
-                ->on('customers_groups');
         });
-
     }
 
     /**
@@ -38,6 +30,7 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('customers_groups');
     }
 }
+
