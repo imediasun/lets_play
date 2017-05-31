@@ -36,17 +36,26 @@ class ProductController extends IndexController
      */
     public function create()
     {
-        //
+        $this->user = Auth::user();
+        $data['nav']['menu'] = parent::menu();
+
+        $this->template = 'admin_page/catalog/product/create';
+
+        return $this->renderOutput($data);
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductFormRequest $request
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductFormRequest $request, Product $product)
     {
-        //
+        $product = $product->create($request->all());
+
+        return redirect()
+            ->route('admin.catalog.products.index', [$product]);
     }
 
     /**

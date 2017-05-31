@@ -11,11 +11,11 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-6 col-8 align-self-center">
-                <h3 class="text-themecolor m-b-0 m-t-0">Редактирование</h3>
+                <h3 class="text-themecolor m-b-0 m-t-0">Создание</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= route('super_admin') ?>">Home</a></li>
                     <li class="breadcrumb-item"><a href="<?= route('admin.catalog.products.index') ?>">Список товаров</a></li>
-                    <li class="breadcrumb-item active">Редактирование товара</li>
+                    <li class="breadcrumb-item active">Создание товара</li>
                 </ol>
             </div>
             <div class="col-md-6 col-4 align-self-center">
@@ -35,41 +35,41 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-block">
-                        <h4 class="card-title">Редактирование</h4>
-                        <h6 class="card-subtitle">Редактирование товара</h6>
+                        <h4 class="card-title">Создание</h4>
+                        <h6 class="card-subtitle">Создание товара</h6>
                         <div class="table-responsive m-t-40">
-                            <form class="form" action="<?= route('admin.catalog.products.update', ['id' => $product->id]) ?>" method="post">
-                                <input name="_method" type="hidden" value="PATCH">
+                            <form class="form" action="<?= route('admin.catalog.products.store') ?>" method="post">
                                 <input name="_token" type="hidden" value="<?= csrf_token() ?>">
+                                <input name="category_id" type="hidden" value="1">
 
                                 <div class="form-group m-t-40 row">
                                     <label for="name" class="col-2 col-form-label">Название товара</label>
                                     <div class="col-10">
-                                        <input name="name" type="text" class="form-control" value="<?= $product->name ?>">
+                                        <input name="name" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-t-40 row">
                                     <label for="art" class="col-2 col-form-label">Артикул</label>
                                     <div class="col-10">
-                                        <input name="art" type="text" class="form-control" value="<?= $product->art ?>">
+                                        <input name="art" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-t-40 row">
                                     <label for="description" class="col-2 col-form-label">Описание</label>
                                     <div class="col-10">
-                                        <input name="description" type="text" class="form-control" value="<?= $product->description ?>">
+                                        <input name="description" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-t-40 row">
                                     <label for="description2" class="col-2 col-form-label">Подробное описание</label>
                                     <div class="col-10">
-                                        <input name="description2" type="text" class="form-control" value="<?= $product->description2 ?>">
+                                        <input name="description2" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-t-40 row">
                                     <label for="qnt" class="col-2 col-form-label">Количество</label>
                                     <div class="col-10">
-                                        <input name="qnt" type="text" class="form-control" value="<?= $product->qnt ?>">
+                                        <input name="qnt" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                                 <div class="form-group m-b-0">
