@@ -95,11 +95,13 @@ Route::group([
 ], function () {
 
     Route::group(['as' => 'customer.', 'namespace' => 'Customer'], function () {
-
         Route::resource('customers', 'CustomerController');
         Route::resource('groups', 'GroupController');
+    });
 
+    Route::group(['as' => 'catalog.', 'namespace' => 'Catalog'], function () {
+        Route::resource('categories', 'CategoryController');
+        Route::resource('products', 'ProductController');
     });
 
 });
-

@@ -48,8 +48,24 @@ class AdminCategoriesTableSeeder extends Seeder
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/deals_names',
             ],
-          
-
+            [
+                'parent_id' => 0,
+                'name'      => 'Каталог',
+                'icon'      => 'fa-book',
+                'link'      => '/admin/',
+            ],
+            [
+                'parent_id' => 7,
+                'name'      => 'Категории',
+                'icon'      => 'fa-folder-open-o',
+                'link'      => '/admin/categories',
+            ],
+            [
+                'parent_id' => 7,
+                'name'      => 'Товары',
+                'icon'      => 'fa-folder-open-o',
+                'link'      => '/admin/products',
+            ],
         ]);
 
         DB::table('center_admin_categories')->insert([

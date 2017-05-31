@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models\Catalog;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Category
+ * @package App\Models\Catalog
+ */
+class Category extends Model
+{
+    /**
+     * The database table used by the model.
+     * @var string
+     */
+    protected $table = 'catalog_categories';
+
+    /**
+     * Get the parent category that owns the category.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
