@@ -41,8 +41,8 @@
                                 <thead>
                                 <tr>
                                     <th>Категория</th>
-                                    <th class="min-tablet">Активация</th>
-                                    <th class="min-desktop">Действие</th>
+<!--                                    <th class="min-tablet">Активация</th>
+-->                                    <th class="min-desktop">Действие</th>
                                 </tr>
                                 </thead>
 
@@ -52,20 +52,20 @@
                                     ?>
                                     <tr>
                                         <td><?= $category->name ?></td>
-                                        <td>
+<!--                                        <td>
                                             <?php
-                                            if ($category->active == 1) {
-                                                ?>
+/*                                            if ($category->active == 1) {
+                                                */?>
                                                 <input type="checkbox" checked class="activated_clients_group js-switch" data-color="#7460ee"/>
                                                 <?php
-                                            } else {
-                                                ?>
+/*                                            } else {
+                                                */?>
                                                 <input type="checkbox" class="activated_clients_group js-switch" data-color="#7460ee"/>
                                                 <?php
-                                            }
-                                            ?>
+/*                                            }
+                                            */?>
                                         </td>
-                                        <td>
+-->                                        <td>
                                             <a class="btn btn-primary btn-icon fa fa-edit"
                                                href="<?= route('admin.catalog.categories.edit', ['id' => $category->id]) ?>"
                                                data-toggle="tooltip"

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Catalog\Category;
+use App\Models\Catalog\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +25,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::model('categories', Category::class);
+        Route::model('products', Product::class);
 
         parent::boot();
     }

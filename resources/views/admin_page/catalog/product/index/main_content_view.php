@@ -43,8 +43,8 @@
                                     <th>Название товара</th>
                                     <th>Категория</th>
                                     <th>Количество</th>
-                                    <th class="min-tablet">Статус</th>
-                                    <th class="min-desktop">Действие</th>
+<!--                                    <th class="min-tablet">Статус</th>
+-->                                    <th class="min-desktop">Действие</th>
                                 </tr>
                                 </thead>
 
@@ -56,20 +56,20 @@
                                         <td><?= $product->name ?></td>
                                         <td><?= $product->category->name ?></td>
                                         <td><?= $product->qnt ?></td>
-                                        <td>
+<!--                                        <td>
                                             <?php
-                                            if ($product->active == 1) {
-                                                ?>
+/*                                            if ($product->active == 1) {
+                                                */?>
                                                 <input type="checkbox" checked class="activated_clients_group js-switch" data-color="#7460ee"/>
                                                 <?php
-                                            } else {
-                                                ?>
+/*                                            } else {
+                                                */?>
                                                 <input type="checkbox" class="activated_clients_group js-switch" data-color="#7460ee"/>
                                                 <?php
-                                            }
-                                            ?>
+/*                                            }
+                                            */?>
                                         </td>
-                                        <td>
+-->                                        <td>
                                             <a class="btn btn-primary btn-icon fa fa-edit"
                                                href="<?= route('admin.catalog.products.edit', ['id' => $product->id]) ?>"
                                                data-toggle="tooltip"

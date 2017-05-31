@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Catalog;
 
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Requests\CategoryFormRequest;
 use App\Models\Catalog\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,9 @@ class CategoryController extends IndexController
         $this->user = Auth::user();
         $data['nav']['menu'] = parent::menu();
 
-        $data['content']['categories'] = Category::orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->get();
+        $data['content']['categories'] = Category::all();
 
-        $this->template = 'admin_page/catalog/category';
+        $this->template = 'admin_page/catalog/category/index';
 
         return $this->renderOutput($data);
     }
@@ -62,23 +61,33 @@ class CategoryController extends IndexController
 
     /**
      * Show the form for editing the specified resource.
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return string
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        $this->user = Auth::user();
+        $data['nav']['menu'] = parent::menu();
+
+        $data['content']['category'] = $category;
+
+        $this->template = 'admin_page/catalog/category/edit';
+
+        return $this->renderOutput($data);
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CategoryFormRequest $request
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryFormRequest $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        return redirect()
+            ->route('admin.catalog.categories.index', [$category]);
     }
 
     /**

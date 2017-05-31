@@ -17,6 +17,19 @@ class Product extends Model
     protected $table = 'catalog_products';
 
     /**
+     * @var array  fields to save
+     */
+    protected $fillable = [
+        'category_id',
+        'name',
+        'art',
+        'description',
+        'description2',
+        'qnt',
+        'active',
+    ];
+
+    /**
      * Category of product
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

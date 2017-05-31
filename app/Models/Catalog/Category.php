@@ -17,6 +17,16 @@ class Category extends Model
     protected $table = 'catalog_categories';
 
     /**
+     * @var array  fields to save
+     */
+    protected $fillable = [
+        'parent_id',
+        'name',
+        'description',
+        'active',
+    ];
+
+    /**
      * Get the parent category that owns the category.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Catalog;
 
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Requests\ProductFormRequest;
 use App\Models\Catalog\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,18 +23,15 @@ class ProductController extends IndexController
         $this->user = Auth::user();
         $data['nav']['menu'] = parent::menu();
 
-        $data['content']['products'] = Product::orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->get();
+        $data['content']['products'] = Product::all();
 
-        $this->template = 'admin_page/catalog/product';
+        $this->template = 'admin_page/catalog/product/index';
 
         return $this->renderOutput($data);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -43,7 +41,6 @@ class ProductController extends IndexController
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -54,7 +51,6 @@ class ProductController extends IndexController
 
     /**
      * Display the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -65,30 +61,38 @@ class ProductController extends IndexController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return string
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $this->user = Auth::user();
+        $data['nav']['menu'] = parent::menu();
+
+        $data['content']['product'] = $product;
+
+        $this->template = 'admin_page/catalog/product/edit';
+
+        return $this->renderOutput($data);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ProductFormRequest $request
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ProductFormRequest $request, Product $product)
     {
-        //
+        $product->update($request->all());
+
+        return redirect()
+            ->route('admin.catalog.products.index', [$product]);
+
     }
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
