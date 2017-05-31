@@ -41,6 +41,7 @@
                                 <thead>
                                 <tr>
                                     <th>Название товара</th>
+                                    <th>Категория</th>
                                     <th>Количество</th>
                                     <th class="min-tablet">Статус</th>
                                     <th class="min-desktop">Действие</th>
@@ -53,6 +54,7 @@
                                     ?>
                                     <tr>
                                         <td><?= $product->name ?></td>
+                                        <td><?= $product->category->name ?></td>
                                         <td><?= $product->qnt ?></td>
                                         <td>
                                             <?php
