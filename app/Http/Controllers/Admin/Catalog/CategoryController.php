@@ -108,4 +108,17 @@ class CategoryController extends IndexController
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(Category $category)
+    {
+        $category->delete();
+
+        return redirect()
+            ->route('admin.catalog.categories.index');
+    }
 }

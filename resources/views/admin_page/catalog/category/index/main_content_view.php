@@ -71,6 +71,12 @@
                                                data-toggle="tooltip"
                                                data-original-title="Редактировать"
                                             ></a>
+                                            <a class="delete_btn btn btn-danger btn-icon fa fa-times"
+                                               href="<?= route('admin.catalog.categories.delete', ['id' => $category->id]) ?>"
+                                               data-toggle="tooltip"
+                                               data-original-title="Delete"
+                                            ></a>
+
                                         </td>
                                     </tr>
                                     <?php

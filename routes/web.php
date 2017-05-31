@@ -101,6 +101,8 @@ Route::group([
 
     Route::group(['as' => 'catalog.', 'namespace' => 'Catalog'], function () {
         Route::resource('categories', 'CategoryController');
+        Route::get('categories/{categories}/delete', ['as' => 'categories.delete', 'uses' => 'CategoryController@delete']);
+
         Route::resource('products', 'ProductController');
     });
 
