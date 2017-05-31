@@ -48,6 +48,18 @@
                                         <input name="name" type="text" class="form-control" value="<?= $product->name ?>">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="example-month-input" class="col-2 col-form-label">Категория товара</label>
+                                    <div class="col-10">
+                                        <select name="category_id" class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <?php foreach ($sel_categories as $sel_id => $sel_category): ?>
+                                                <option value="<?= $sel_id ?>" <?= ($sel_id == $product->category_id) ? 'selected' : '' ?>>
+                                                    <?= $sel_category ?>
+                                                </option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group m-t-40 row">
                                     <label for="art" class="col-2 col-form-label">Артикул</label>
                                     <div class="col-10">

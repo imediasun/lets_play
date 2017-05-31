@@ -40,12 +40,23 @@
                         <div class="table-responsive m-t-40">
                             <form class="form" action="<?= route('admin.catalog.products.store') ?>" method="post">
                                 <input name="_token" type="hidden" value="<?= csrf_token() ?>">
-                                <input name="category_id" type="hidden" value="1">
 
                                 <div class="form-group m-t-40 row">
                                     <label for="name" class="col-2 col-form-label">Название товара</label>
                                     <div class="col-10">
                                         <input name="name" type="text" class="form-control" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-month-input" class="col-2 col-form-label">Категория товара</label>
+                                    <div class="col-10">
+                                        <select name="category_id" class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <?php foreach ($sel_categories as $sel_id => $sel_category): ?>
+                                                <option value="<?= $sel_id ?>">
+                                                    <?= $sel_category ?>
+                                                </option>
+                                            <?php endforeach ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-t-40 row">

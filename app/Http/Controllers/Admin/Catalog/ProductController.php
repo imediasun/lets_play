@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Catalog;
 
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Catalog\Category;
 use App\Models\Catalog\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,8 @@ class ProductController extends IndexController
     {
         $this->user = Auth::user();
         $data['nav']['menu'] = parent::menu();
+
+        $data['content']['sel_categories'] = Category::pluck('name', 'id');
 
         $this->template = 'admin_page/catalog/product/create';
 
@@ -79,6 +82,7 @@ class ProductController extends IndexController
         $data['nav']['menu'] = parent::menu();
 
         $data['content']['product'] = $product;
+        $data['content']['sel_categories'] = Category::pluck('name', 'id');
 
         $this->template = 'admin_page/catalog/product/edit';
 
