@@ -104,6 +104,7 @@ Route::group([
         Route::get('categories/{categories}/delete', ['as' => 'categories.delete', 'uses' => 'CategoryController@delete']);
 
         Route::resource('products', 'ProductController');
+        Route::get('products/{products}/delete', ['as' => 'products.delete', 'uses' => 'ProductController@delete']);
     });
 
 });

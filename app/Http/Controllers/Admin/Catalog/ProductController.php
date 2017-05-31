@@ -100,4 +100,17 @@ class ProductController extends IndexController
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(Product $product)
+    {
+        $product->delete();
+
+        return redirect()
+            ->route('admin.catalog.products.index');
+    }
 }

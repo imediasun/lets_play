@@ -18,10 +18,10 @@
                 </ol>
             </div>
             <div class="col-md-6 col-4 align-self-center">
-                <button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-                <button class="btn pull-right hidden-sm-down btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="mdi mdi-plus-circle"></i>
+                <a class="btn pull-right hidden-sm-down btn-success" href="<?= route('admin.catalog.products.create') ?>">
+                    <i class="mdi mdi-plus-circle"></i>
                     Создать
-                </button>
+                </a>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -74,6 +74,11 @@
                                                href="<?= route('admin.catalog.products.edit', ['id' => $product->id]) ?>"
                                                data-toggle="tooltip"
                                                data-original-title="Редактировать"
+                                            ></a>
+                                            <a class="delete_btn btn btn-danger btn-icon fa fa-times"
+                                               href="<?= route('admin.catalog.products.delete', ['id' => $product->id]) ?>"
+                                               data-toggle="tooltip"
+                                               data-original-title="Удалить"
                                             ></a>
                                         </td>
                                     </tr>
