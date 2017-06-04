@@ -40,7 +40,7 @@ class AdminCategoriesTableSeeder extends Seeder
                 'parent_id' => 3,
                 'name'      => 'Группы клиентов',
                 'icon'      => 'fa-envelope',
-                'link'      => '/admin/clients_groups',
+                'link'      => '/admin/groups',
             ],
             [
                 'parent_id' => 3,
