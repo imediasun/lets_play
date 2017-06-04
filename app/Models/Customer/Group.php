@@ -18,6 +18,15 @@ class Group extends Model
     protected $table = 'customers_groups';
 
     /**
+     * @var array  fields to save
+     */
+    protected $fillable = [
+        'name',
+        'description',
+        'active',
+    ];
+
+    /**
      * Get the customers for the group.
      */
     public function customers()

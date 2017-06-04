@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Customer;
 
 use App\Http\Controllers\Admin\IndexController;
 use App\Models\Customer\Group;
+use App\Http\Requests\GroupFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,17 +21,15 @@ class GroupController extends IndexController
      */
     public function index()
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $data['content']['groups'] = Group::orderBy('created_at', 'desc')
+        $data = Group::orderBy('created_at', 'desc')
             ->orderBy('updated_at', 'desc')
             ->get();
 
-        $this->template = 'admin_page/customer/group';
-
-        return $this->renderOutput($data);
-
+        return view('admin_page.customer.group.index', [
+            'groups' => $data,
+            ]);
     }
 
     /**
@@ -40,29 +39,28 @@ class GroupController extends IndexController
      */
     public function create()
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $this->template = 'admin_page/customer/group/create';
-
-        return $this->renderOutput($data);
+        return view('admin_page.customer.group.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GroupFormRequest $request, Group $group)
     {
-        //
+        $group = $group->create($request->all());
+
+        return redirect()->route('admin.customer.groups.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,34 +71,67 @@ class GroupController extends IndexController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Group $group)
     {
-        //
+        view()->share('menu', parent::menu());
+
+        return view('admin_page.customer.group.edit',[
+            'group' => $group
+            ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GroupFormRequest $request, Group $group)
     {
-        //
+        $group->update($request->all());
+
+        return redirect()->route('admin.customer.groups.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return 'success';
+    }
+
+    /**
+     * Change status
+     *
+     * @param  int $id
+     * @return JSON
+     */
+    public function status(Request $request)
+    {
+        if($request->ajax()){
+
+            $item = Group::find($request->input('id'));
+
+            $item->active = 1 - $item->active;
+            $item->save();
+
+            $response = [
+                "id" => $item->id,
+                "active" => $item->active
+                ];
+            return json_encode($response);
+        }
+
+        return redirect()->route('admin.customer.groups.index');
     }
 }
