@@ -18,6 +18,18 @@ class Customer extends Model
     protected $table = 'customers';
 
     /**
+     * @var array  fields to save
+     */
+    protected $fillable = [
+        'group_id',
+        'email',
+        'phone',
+        'first_name',
+        'last_name',
+        'active',
+    ];
+
+    /**
      * Get the group that owns the customer.
      */
     public function group()

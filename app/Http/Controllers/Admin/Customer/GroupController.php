@@ -40,7 +40,12 @@ class GroupController extends IndexController
      */
     public function create()
     {
-        //
+        $this->user = Auth::user();
+        $data['nav']['menu'] = parent::menu();
+
+        $this->template = 'admin_page/customer/group/create';
+
+        return $this->renderOutput($data);
     }
 
     /**

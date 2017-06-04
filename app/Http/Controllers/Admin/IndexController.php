@@ -20,6 +20,7 @@ class IndexController extends AdminController
 
     public function menu()
     {
+        $this->user = Auth::user();
         if ($this->user->status == 1) {
             return $this->menu = MenuController::index('super_admin_categories');
         }
