@@ -33,6 +33,16 @@ class UsersTableSeeder extends Seeder
                 'activated'   => true,
                 'name'        => 'Демидов Сергей',
             ],
+            [
+                'email'       => 'test-user@gmail.com',
+                'password'    => bcrypt('123456'),
+                'mobile'      => '+38(000)999-88-77',
+                'add_phone'   => '+38(000)999-88-77',
+                'information' => 'information description',
+                'status'      => 2,
+                'activated'   => true,
+                'name'        => 'Тестовый пользователь',
+            ],
         ]);
 
         DB::table('roles')->insert([

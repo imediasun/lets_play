@@ -17,7 +17,6 @@ class UserController extends IndexController
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -35,7 +34,6 @@ class UserController extends IndexController
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -47,9 +45,9 @@ class UserController extends IndexController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param UserFormRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserFormRequest $request, User $user)
     {
@@ -62,7 +60,6 @@ class UserController extends IndexController
 
     /**
      * Display the specified resource.
-     *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -73,9 +70,8 @@ class UserController extends IndexController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(User $user)
     {
@@ -88,10 +84,9 @@ class UserController extends IndexController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param UserFormRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserFormRequest $request, User $user)
     {
@@ -102,9 +97,8 @@ class UserController extends IndexController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return string
      */
     public function destroy(User $user)
     {
@@ -115,9 +109,8 @@ class UserController extends IndexController
 
     /**
      * Change status
-     *
-     * @param  int $id
-     * @return JSON
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|string
      */
     public function status(Request $request)
     {

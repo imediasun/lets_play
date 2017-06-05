@@ -13,16 +13,28 @@ class OrderStatusesTableSeeder extends Seeder
     {
         DB::table('order_statuses')->insert([
             [
-                'name'  => 'new',
-                'title' => 'Новый',
+                'name'  => 'Pending',
+                'title' => 'В ожидании',
             ],
             [
-                'name'  => 'sent',
-                'title' => 'Отправлен',
-            ],
-            [
-                'name'  => 'paid',
+                'name'  => 'Paid',
                 'title' => 'Оплачен',
+            ],
+            [
+                'name'  => 'PaidInPart',
+                'title' => 'Оплачен частично',
+            ],
+            [
+                'name'  => 'Completed',
+                'title' => 'Выполнен',
+            ],
+            [
+                'name'  => 'Canceled',
+                'title' => 'Отменен',
+            ],
+            [
+                'name'  => 'Overdue',
+                'title' => 'Просрочен',
             ],
         ]);
     }

@@ -45,8 +45,13 @@
                                            data-toggle="tooltip"
                                            data-original-title="Редактировать"
                                         ></a>
-                                        <a href="{{ route('admin.order.orders-statuses.destroy', ['id'=>$status->id]) }}"
-                                           class="delete btn btn-danger btn-icon icon-lg fa fa-times"
+                                        {{--<a href="{{ route('admin.order.orders-statuses.destroy', ['id'=>$status->id]) }}"--}}
+                                           {{--class="delete btn btn-danger btn-icon icon-lg fa fa-times"--}}
+                                        {{--></a>--}}
+                                        <a class="delete btn btn-danger btn-icon fa fa-times"
+                                           href="<?= route('admin.order.orders-statuses.delete', ['id' => $status->id]) ?>"
+                                           data-toggle="tooltip"
+                                           data-original-title="Удалить"
                                         ></a>
                                     </td>
                                 </tr>
@@ -70,16 +75,21 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('.delete').on('click', function (e) {
-                if (!confirm('Are you sure you want to delete?')) return false;
-                e.preventDefault();
-                $.post({
-                    type: 'DELETE',  // destroy Method
-                    url: $(this).attr("href")
-                }).done(function (data) {
-                    console.log(data);
-                    location.reload(true);
-                });
+//            $('.delete').on('click', function (e) {
+//                if (!confirm('Are you sure you want to delete?')) return false;
+//                e.preventDefault();
+//                $.post({
+//                    type: 'DELETE',  // destroy Method
+//                    url: $(this).attr("href")
+//                }).done(function (data) {
+//                    console.log(data);
+//                    location.reload(true);
+//                });
+//            });
+            $('.delete').click(function (e) {
+                if (!confirm('Are you sure you want to delete?')) {
+                    return false;
+                }
             });
         } )( jQuery );
     </script>

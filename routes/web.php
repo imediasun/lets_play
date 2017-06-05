@@ -42,17 +42,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function ()
     Route::post('/func_delete_clients_group', 'Admin\ClientsController@func_delete_clients_group');
 
 
-    Route::get('/test', 'Admin\TestController@index');
-    Route::get('/clients_groups', 'Admin\ClientsController@clients_groups')->name('clients_groups');
+//    Route::get('/test', 'Admin\TestController@index');
+//    Route::get('/clients_groups', 'Admin\ClientsController@clients_groups')->name('clients_groups');
     Route::get('/deals_names', 'Admin\ClientsController@deals_names')->name('deals_names');
 
 
-    Route::get('/add_adv_section', 'Admin\AdvController@index');
-    Route::post('/add_adv', 'Admin\AdvController@add_adv');
+//    Route::get('/add_adv_section', 'Admin\AdvController@index');
+//    Route::post('/add_adv', 'Admin\AdvController@add_adv');
 
-    Route::get('/edit_adv_section/{operation}', 'Admin\AdvController@edit');
-    Route::get('/edit_adv/{id}', 'Admin\AdvController@edit_adv');
-    Route::post('/update_adv', 'Admin\AdvController@update_adv');
+//    Route::get('/edit_adv_section/{operation}', 'Admin\AdvController@edit');
+//    Route::get('/edit_adv/{id}', 'Admin\AdvController@edit_adv');
+//    Route::post('/update_adv', 'Admin\AdvController@update_adv');
 
 
     //admin
@@ -63,12 +63,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function ()
     Route::post('/func_update_role', 'FunctionsController@role');
     Route::post('/func_delete_user', 'FunctionsController@delete_user');
 
-    Route::get('/add_logos', 'Admin\PertnersController@add_logos');
-    Route::get('/del_logos', 'Admin\PertnersController@del_logos');
-    Route::get('/categories', 'Admin\CategoriesController@index');
-    Route::get('/partners', 'Admin\PertnersController@index');
-    Route::get('/add_category', 'Admin\CategoriesController@add_category');
-    Route::resource('/customers_managment', 'Admin\CustomersController');
+//    Route::get('/add_logos', 'Admin\PertnersController@add_logos');
+//    Route::get('/del_logos', 'Admin\PertnersController@del_logos');
+//    Route::get('/categories', 'Admin\CategoriesController@index');
+//    Route::get('/partners', 'Admin\PertnersController@index');
+//    Route::get('/add_category', 'Admin\CategoriesController@add_category');
+//    Route::resource('/customers_managment', 'Admin\CustomersController');
 });
 
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
@@ -116,6 +116,9 @@ Route::group([
 
     Route::group(['as' => 'order.', 'namespace' => 'Order'], function () {
         Route::resource('orders', 'OrderController');
+
+        // TODO: посмотреть почему не работает destroy
         Route::resource('orders-statuses', 'StatusController');
+        Route::get('orders-statuses/{orders_status}/delete', ['as' => 'orders-statuses.delete', 'uses' => 'StatusController@delete']);
     });
 });
