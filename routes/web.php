@@ -114,4 +114,8 @@ Route::group([
         Route::get('products/{products}/delete', ['as' => 'products.delete', 'uses' => 'ProductController@delete']);
     });
 
+    Route::group(['as' => 'order.', 'namespace' => 'Order'], function () {
+        Route::resource('orders', 'OrderController');
+        Route::resource('orders-statuses', 'StatusController');
+    });
 });

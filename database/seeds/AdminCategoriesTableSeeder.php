@@ -85,7 +85,7 @@ class AdminCategoriesTableSeeder extends Seeder
                 'parent_id' => 10,
                 'name'      => 'Статусы заказов',
                 'icon'      => 'fa-folder-open-o',
-                'link'      => '/admin/orders/statuses',
+                'link'      => '/admin/orders-statuses',
             ],
         ]);
 
