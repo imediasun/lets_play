@@ -22,7 +22,7 @@ class AdminCategoriesTableSeeder extends Seeder
                 'parent_id' => 1,
                 'name'      => 'Управление пользователями',
                 'icon'      => 'fa-registered',
-                'link'      => '/admin/customers_managment',
+                'link'      => '/admin/users',
             ],
             [
                 'parent_id' => 0,
