@@ -20,10 +20,11 @@ class AdminCategoriesTableSeeder extends Seeder
             ],
             [
                 'parent_id' => 1,
-                'name'      => 'Управление пользователями',
+                'name'      => 'Список пользователей',
                 'icon'      => 'fa-registered',
                 'link'      => '/admin/users',
             ],
+
             [
                 'parent_id' => 0,
                 'name'      => 'Покупатели',
@@ -32,13 +33,13 @@ class AdminCategoriesTableSeeder extends Seeder
             ],
             [
                 'parent_id' => 3,
-                'name'      => 'Покупатели',
+                'name'      => 'Список покупателей',
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/customers',
             ],
             [
                 'parent_id' => 3,
-                'name'      => 'Группы клиентов',
+                'name'      => 'Группы покупателей',
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/groups',
             ],
@@ -48,6 +49,7 @@ class AdminCategoriesTableSeeder extends Seeder
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/deals_names',
             ],
+
             [
                 'parent_id' => 0,
                 'name'      => 'Каталог',
@@ -65,6 +67,25 @@ class AdminCategoriesTableSeeder extends Seeder
                 'name'      => 'Товары',
                 'icon'      => 'fa-folder-open-o',
                 'link'      => '/admin/products',
+            ],
+
+            [
+                'parent_id' => 0,
+                'name'      => 'Продажи',
+                'icon'      => 'fa-book',
+                'link'      => '/admin/',
+            ],
+            [
+                'parent_id' => 10,
+                'name'      => 'Заказы',
+                'icon'      => 'fa-folder-open-o',
+                'link'      => '/admin/orders',
+            ],
+            [
+                'parent_id' => 10,
+                'name'      => 'Статусы заказов',
+                'icon'      => 'fa-folder-open-o',
+                'link'      => '/admin/orders/statuses',
             ],
         ]);
 
