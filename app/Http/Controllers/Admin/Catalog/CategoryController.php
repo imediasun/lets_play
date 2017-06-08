@@ -20,14 +20,15 @@ class CategoryController extends IndexController
      */
     public function index()
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $data['content']['categories'] = Category::all();
+        $categories = Category::orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
-        $this->template = 'admin_page/catalog/category/index';
-
-        return $this->renderOutput($data);
+        return view('admin_page.catalog.category.index', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -36,12 +37,9 @@ class CategoryController extends IndexController
      */
     public function create()
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $this->template = 'admin_page/catalog/category/create';
-
-        return $this->renderOutput($data);
+        return view('admin_page.catalog.category.create');
     }
 
     /**
@@ -60,7 +58,7 @@ class CategoryController extends IndexController
 
     /**
      * Display the specified resource.
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,14 +73,11 @@ class CategoryController extends IndexController
      */
     public function edit(Category $category)
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $data['content']['category'] = $category;
-
-        $this->template = 'admin_page/catalog/category/edit';
-
-        return $this->renderOutput($data);
+        return view('admin_page.catalog.category.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -101,24 +96,38 @@ class CategoryController extends IndexController
 
     /**
      * Remove the specified resource from storage.
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
      * @param Category $category
-     * @return \Illuminate\Http\RedirectResponse
+     * @return string
      */
-    public function delete(Category $category)
+    public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()
-            ->route('admin.catalog.categories.index');
+        return 'success';
+    }
+
+    /**
+     * Change status
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|string
+     */
+    public function status(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $item = Category::find($request->input('id'));
+
+            $item->active = 1 - $item->active;
+            $item->save();
+
+            $response = [
+                'id'     => $item->id,
+                'active' => $item->active,
+            ];
+
+            return json_encode($response);
+        }
+
+        return redirect()->route('admin.catalog.categories.index');
     }
 }

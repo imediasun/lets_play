@@ -6,12 +6,11 @@
     <div class="col-md-6 col-8 align-self-center">
         <h3 class="text-themecolor m-b-0 m-t-0">Пользователи</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
             <li class="breadcrumb-item active">Список пользователей</li>
         </ol>
     </div>
     <div class="col-md-6 col-4 align-self-center">
-        <button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
         <a class="btn pull-right hidden-sm-down btn-success" href="{{route('admin.user.users.create') }}">
             <i class="mdi mdi-plus-circle"></i>
             Создать
