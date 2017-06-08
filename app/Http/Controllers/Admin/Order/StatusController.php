@@ -98,7 +98,7 @@ class StatusController extends IndexController
     /**
      * Remove the specified resource from storage.
      * @param Status $status
-     * @return \Illuminate\Http\RedirectResponse
+     * @return string
      */
     public function destroy(Status $status)
     {

@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Models\Customer\Group;
 use App\Http\Requests\GroupFormRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class GroupController
@@ -16,7 +15,6 @@ class GroupController extends IndexController
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -29,12 +27,11 @@ class GroupController extends IndexController
 
         return view('admin_page.customer.group.index', [
             'groups' => $data,
-            ]);
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -46,9 +43,9 @@ class GroupController extends IndexController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param GroupFormRequest $request
+     * @param Group $group
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(GroupFormRequest $request, Group $group)
     {
@@ -59,7 +56,6 @@ class GroupController extends IndexController
 
     /**
      * Display the specified resource.
-     *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -70,25 +66,23 @@ class GroupController extends IndexController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Group $group
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Group $group)
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.customer.group.edit',[
-            'group' => $group
-            ]);
+        return view('admin_page.customer.group.edit', [
+            'group' => $group,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param GroupFormRequest $request
+     * @param Group $group
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(GroupFormRequest $request, Group $group)
     {
@@ -99,9 +93,8 @@ class GroupController extends IndexController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Group $group
+     * @return string
      */
     public function destroy(Group $group)
     {
@@ -112,13 +105,12 @@ class GroupController extends IndexController
 
     /**
      * Change status
-     *
-     * @param  int $id
-     * @return JSON
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|string
      */
     public function status(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
 
             $item = Group::find($request->input('id'));
 
@@ -126,9 +118,10 @@ class GroupController extends IndexController
             $item->save();
 
             $response = [
-                "id" => $item->id,
-                "active" => $item->active
-                ];
+                "id"     => $item->id,
+                "active" => $item->active,
+            ];
+
             return json_encode($response);
         }
 
