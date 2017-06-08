@@ -24,33 +24,32 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Редактирование</h4>
-                    <h6 class="card-subtitle">Редактирование</h6>
-                    <div class="table-responsive m-t-40">
-                        <form class="form" action="{{ route('admin.order.orders-statuses.update', $status->id) }}" method="post">
-                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
-                            <input name="_method" type="hidden" value="PATCH">
+                    <h6 class="card-subtitle">Редактировть статуса заказа</h6>
 
-                            <div class="form-group m-t-40 row">
-                                <label for="title" class="col-2 col-form-label">Название</label>
-                                <div class="col-10">
-                                    <input name="title" type="text" class="form-control" value="{{$status->title}}" id="title">
-                                </div>
-                            </div>
+                    <form class="form" action="{{ route('admin.order.orders-statuses.update', $status->id) }}" method="post">
+                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                        <input name="_method" type="hidden" value="PATCH">
 
-                            <div class="form-group m-t-40 row">
-                                <label for="name" class="col-2 col-form-label">Код</label>
-                                <div class="col-10">
-                                    <input name="name" type="text" class="form-control" value="{{$status->name}}" id="name">
-                                </div>
+                        <div class="form-group m-t-40 row">
+                            <label for="title" class="col-2 col-form-label">Название</label>
+                            <div class="col-10">
+                                <input name="title" type="text" class="form-control" value="{{$status->title}}" id="title">
                             </div>
+                        </div>
 
-                            <div class="form-group m-b-0">
-                                <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-info waves-effect waves-light">Сохранить</button>
-                                </div>
+                        <div class="form-group m-t-40 row">
+                            <label for="name" class="col-2 col-form-label">Код</label>
+                            <div class="col-10">
+                                <input name="name" type="text" class="form-control" value="{{$status->name}}" id="name">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+
+                        <div class="form-group m-b-0">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-info waves-effect waves-light">Сохранить</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

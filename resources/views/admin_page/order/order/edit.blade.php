@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Редактирование</h4>
-                    <h6 class="card-subtitle">Редактирование</h6>
+                    <h6 class="card-subtitle">Редактировать заказ</h6>
 
                     <form class="form" action="{{ route('admin.order.orders.update', $order->id) }}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
