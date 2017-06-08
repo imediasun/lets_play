@@ -6,7 +6,7 @@
         <div class="col-md-6 col-8 align-self-center">
             <h3 class="text-themecolor m-b-0 m-t-0">Заказы</h3>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
                 <li class="breadcrumb-item active">Список заказов</li>
             </ol>
         </div>

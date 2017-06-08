@@ -27,19 +27,19 @@ class AdminCategoriesTableSeeder extends Seeder
 
             [
                 'parent_id' => 0,
-                'name'      => 'Покупатели',
+                'name'      => 'Клиенты',
                 'icon'      => 'fa-gift',
                 'link'      => '/admin/customers',
             ],
             [
                 'parent_id' => 3,
-                'name'      => 'Список покупателей',
+                'name'      => 'Список клиентов',
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/customers',
             ],
             [
                 'parent_id' => 3,
-                'name'      => 'Группы покупателей',
+                'name'      => 'Группы клиентов',
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/groups',
             ],

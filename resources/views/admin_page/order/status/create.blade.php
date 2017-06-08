@@ -6,7 +6,7 @@
         <div class="col-md-6 col-8 align-self-center">
             <h3 class="text-themecolor m-b-0 m-t-0">Создание</h3>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.order.orders-statuses.index') }}">Список статусов</a></li>
                 <li class="breadcrumb-item active">Создание</li>
             </ol>
@@ -25,31 +25,31 @@
                 <div class="card-block">
                     <h4 class="card-title">Создание</h4>
                     <h6 class="card-subtitle">Создать статус заказа</h6>
-                    <div class="table-responsive m-t-40">
-                        <form class="form" action="{{ route('admin.order.orders-statuses.store') }}" method="post">
-                            <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
-                            <div class="form-group m-t-40 row">
-                                <label for="title" class="col-2 col-form-label">Название</label>
-                                <div class="col-10">
-                                    <input name="title" type="text" class="form-control" value="" id="title">
-                                </div>
-                            </div>
+                    <form class="form" action="{{ route('admin.order.orders-statuses.store') }}" method="post">
+                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
-                            <div class="form-group m-t-40 row">
-                                <label for="name" class="col-2 col-form-label">Код</label>
-                                <div class="col-10">
-                                    <input name="name" type="text" class="form-control" value="" id="name">
-                                </div>
+                        <div class="form-group m-t-40 row">
+                            <label for="title" class="col-2 col-form-label">Название</label>
+                            <div class="col-10">
+                                <input name="title" type="text" class="form-control" value="" id="title">
                             </div>
+                        </div>
 
-                            <div class="form-group m-b-0">
-                                <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-info waves-effect waves-light">Сохранить</button>
-                                </div>
+                        <div class="form-group m-t-40 row">
+                            <label for="name" class="col-2 col-form-label">Код</label>
+                            <div class="col-10">
+                                <input name="name" type="text" class="form-control" value="" id="name">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+
+                        <div class="form-group m-b-0">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-info waves-effect waves-light">Сохранить</button>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>

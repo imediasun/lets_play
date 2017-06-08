@@ -4,14 +4,13 @@
 
 <div class="row page-titles">
     <div class="col-md-6 col-8 align-self-center">
-        <h3 class="text-themecolor m-b-0 m-t-0">Группы покупателей</h3>
+        <h3 class="text-themecolor m-b-0 m-t-0">Группы клиентов</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Home</a></li>
-            <li class="breadcrumb-item active">Группы покупателей</li>
+            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
+            <li class="breadcrumb-item active">Группы клиентов</li>
         </ol>
     </div>
     <div class="col-md-6 col-4 align-self-center">
-        <button class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
         <a class="btn pull-right hidden-sm-down btn-success" href="{{route('admin.customer.groups.create') }}">
             <i class="mdi mdi-plus-circle"></i>
             Создать
@@ -23,19 +22,19 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-block">
-                <h4 class="card-title">Группы покупателей</h4>
-                <h6 class="card-subtitle">Список групп</h6>
+                <h4 class="card-title">Группы клиентов</h4>
+                <h6 class="card-subtitle">Список групп клиентов</h6>
                 <div class="table-responsive m-t-40">
-                    <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                    <table id="demo-dt-basic" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>Имя</th>
+                            <th>Название группы</th>
                             <th class="min-tablet">Описание</th>
                             <th class="min-tablet">Активация</th>
                             <th class="min-desktop">Действие</th>
                         </tr>
                         </thead>
-
                         <tbody>
                         @foreach ($groups as $group)
                             <tr>
@@ -53,8 +52,8 @@
                             </tr>
                         @endforeach
                         </tbody>
-
                     </table>
+
                 </div>
             </div>
         </div>

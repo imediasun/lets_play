@@ -4,10 +4,10 @@
 
 <div class="row page-titles">
     <div class="col-md-6 col-8 align-self-center">
-        <h3 class="text-themecolor m-b-0 m-t-0">Покупатели</h3>
+        <h3 class="text-themecolor m-b-0 m-t-0">Клиенты</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Home</a></li>
-            <li class="breadcrumb-item active">Список покупателей</li>
+            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
+            <li class="breadcrumb-item active">Список клиентов</li>
         </ol>
     </div>
     <div class="col-md-6 col-4 align-self-center">
@@ -22,13 +22,13 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-block">
-                <h4 class="card-title">Покупатели</h4>
-                <h6 class="card-subtitle">Список покупателей</h6>
+                <h4 class="card-title">Клиенты</h4>
+                <h6 class="card-subtitle">Список клиентов</h6>
                 <div class="table-responsive m-t-40">
                     <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th>Покупатель</th>
+                            <th>Клиент</th>
                             <th class="min-tablet">E-Mail</th>
                             <th class="min-tablet">Группа</th>
                             <th class="min-tablet">Активация</th>

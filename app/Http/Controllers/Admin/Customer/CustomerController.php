@@ -17,7 +17,6 @@ class CustomerController extends IndexController
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -30,32 +29,31 @@ class CustomerController extends IndexController
 
         return view('admin_page.customer.customer.index', [
             'customers' => $data,
-            ]);
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.customer.customer.create',[
+        return view('admin_page.customer.customer.create', [
             'groups' => Group::where('active', '=', '1')->get(),
-            ]);
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param CustomerFormRequest $request
+     * @param Customer $customer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CustomerFormRequest $request, Customer $customer)
     {
-        $customer = $customer->create($request->all());
+        $customer->create($request->all());
 
         return redirect()->route('admin.customer.customers.index');
     }
@@ -73,26 +71,24 @@ class CustomerController extends IndexController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Customer $customer)
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.customer.customer.edit',[
+        return view('admin_page.customer.customer.edit', [
             'customer' => $customer,
-            'groups' => Group::where('active', '=', '1')->get(),
-            ]);
+            'groups'   => Group::where('active', '=', '1')->get(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param CustomerFormRequest $request
+     * @param Customer $customer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(CustomerFormRequest $request, Customer $customer)
     {
@@ -103,9 +99,8 @@ class CustomerController extends IndexController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return string
      */
     public function destroy(Customer $customer)
     {
@@ -115,14 +110,13 @@ class CustomerController extends IndexController
     }
 
     /**
-     * Change status
-     *
-     * @param  int $id
-     * @return JSON
+     * Change active
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|string
      */
     public function status(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
 
             $item = Customer::find($request->input('id'));
 
@@ -130,9 +124,10 @@ class CustomerController extends IndexController
             $item->save();
 
             $response = [
-                "id" => $item->id,
-                "active" => $item->active
-                ];
+                "id"     => $item->id,
+                "active" => $item->active,
+            ];
+
             return json_encode($response);
         }
 

@@ -2,75 +2,85 @@
 
 @section('content')
 
-<div class="row page-titles">
-    <div class="col-md-6 col-8 align-self-center">
-        <h3 class="text-themecolor m-b-0 m-t-0">Создание</h3>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.customer.customers.index') }}">Список покупателей</a></li>
-            <li class="breadcrumb-item active">Создание</li>
-        </ol>
+    <div class="row page-titles">
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Создание</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.customer.customers.index') }}">Список клиентов</a></li>
+                <li class="breadcrumb-item active">Создание клиента</li>
+            </ol>
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+            <a class="btn pull-right hidden-sm-down btn-success" href="{{ route('admin.customer.customers.create') }}">
+                <i class="mdi mdi-plus-circle"></i>
+                Создать
+            </a>
+        </div>
     </div>
-    <div class="col-md-6 col-4 align-self-center">
-        <a class="btn pull-right hidden-sm-down btn-success" href="{{ route('admin.customer.customers.create') }}">
-            <i class="mdi mdi-plus-circle"></i>
-            Создать
-        </a>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Создание</h4>
-                <h6 class="card-subtitle">Создание</h6>
-                <div class="table-responsive m-t-40">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Создание</h4>
+                    <h6 class="card-subtitle">Создание клиента</h6>
+
                     <form class="form" action="{{ route('admin.customer.customers.store') }}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
-                        <div class="form-group row">
-                            <label for="inlineFormCustomSelect" class="col-2 col-form-label">Группа</label>
-                            <div class="col-10">
-                                <select name="group_id" class="custom-select col-12" id="inlineFormCustomSelect">
-                                @foreach($groups as $group)
-                                <option value="{{$group->id}}">{{$group->name}}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                        </div>
                         <div class="form-group m-t-40 row">
-                            <label for="email" class="col-2 col-form-label">E-mail</label>
-                            <div class="col-10">
-                                <input name="email" type="text" class="form-control" value="">
-                            </div>
-                        </div>
-                        <div class="form-group m-t-40 row">
-                            <label for="phone" class="col-2 col-form-label">Phone</label>
-                            <div class="col-10">
-                                <input name="phone" type="text" class="form-control" value="">
-                            </div>
-                        </div>
-                        <div class="form-group m-t-40 row">
-                            <label for="first_name" class="col-2 col-form-label">first_name</label>
+                            <label for="first_name" class="col-2 col-form-label">Имя клиента</label>
                             <div class="col-10">
                                 <input name="first_name" type="text" class="form-control" value="">
                             </div>
                         </div>
+
                         <div class="form-group m-t-40 row">
-                            <label for="last_name" class="col-2 col-form-label">last_name</label>
+                            <label for="last_name" class="col-2 col-form-label">Фамилия клиента</label>
                             <div class="col-10">
                                 <input name="last_name" type="text" class="form-control" value="">
                             </div>
                         </div>
 
                         <div class="form-group m-t-40 row">
-                            <label for="last_name" class="col-2 col-form-label">Active</label>
-                          <div class="col-10">
-                            <div class="checkbox">
-                              <input type="checkbox" name="active" checked class="activated_clients_group js-switch" data-color="#7460ee"/>
+                            <label for="email" class="col-2 col-form-label">E-mail клиента</label>
+                            <div class="col-10">
+                                <input name="email" type="text" class="form-control" value="">
                             </div>
-                          </div>
+                        </div>
+
+                        <div class="form-group m-t-40 row">
+                            <label for="phone" class="col-2 col-form-label">Телефон клиента</label>
+                            <div class="col-10">
+                                <input name="phone" type="text" class="form-control" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inlineFormCustomSelect" class="col-2 col-form-label">Группа клиентов</label>
+                            <div class="col-10">
+                                <select name="group_id" class="custom-select col-12" id="inlineFormCustomSelect">
+                                    @foreach($groups as $group)
+                                        <option value="{{$group->id}}">{{$group->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-40 row">
+                            <label for="active" class="col-2 col-form-label">Активировать</label>
+                            <div class="col-10">
+                                <div class="checkbox">
+                                    <input type="checkbox"
+                                           name="active"
+                                           value="1"
+                                           checked
+                                           class="activated_clients_group js-switch"
+                                           data-color="#7460ee"
+                                    />
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group m-b-0">
@@ -79,10 +89,10 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
-    </div>
-</div><!-- row -->
+    </div><!-- row -->
 
 @endsection
