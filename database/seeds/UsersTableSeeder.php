@@ -13,35 +13,41 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
+                'name'        => 'Лопушанский Андрей',
                 'email'       => 'imediasun@gmail.com',
                 'password'    => bcrypt('sunimedia'),
+                'first_name'  => 'Лопушанский',
+                'last_name'   => 'Андрей',
                 'mobile'      => '+38(096)544-11-20',
                 'add_phone'   => '+38(096)544-11-20',
                 'information' => 'information description',
                 'status'      => 1,
                 'activated'   => true,
-                'name'        => 'Лопушанский Андрей',
 
             ],
             [
+                'name'        => 'Демидов Сергей',
                 'email'       => 'imediasun8@gmail.com',
                 'password'    => bcrypt('sunimedia'),
+                'first_name'  => 'Демидов',
+                'last_name'   => 'Сергей',
                 'mobile'      => '+38(096)544-11-20',
                 'add_phone'   => '+38(096)544-11-20',
                 'information' => 'information description',
                 'status'      => 2,
                 'activated'   => true,
-                'name'        => 'Демидов Сергей',
             ],
             [
+                'name'        => 'Тестовый Пользователь',
                 'email'       => 'test-user@gmail.com',
                 'password'    => bcrypt('123456'),
+                'first_name'  => 'Тестовый',
+                'last_name'   => 'Пользователь',
                 'mobile'      => '+38(000)999-88-77',
                 'add_phone'   => '+38(000)999-88-77',
                 'information' => 'information description',
                 'status'      => 2,
                 'activated'   => true,
-                'name'        => 'Тестовый пользователь',
             ],
         ]);
 

@@ -25,11 +25,11 @@ class User extends Model
         'email',
         'password',
         'first_name',
+        'last_name',
         'mobile',
         'add_phone',
         'information',
         'status',
-        'active',
+        'activated',
     ];
-
 }

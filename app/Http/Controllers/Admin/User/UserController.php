@@ -29,7 +29,7 @@ class UserController extends IndexController
 
         return view('admin_page.user.user.index', [
             'users' => $data,
-            ]);
+        ]);
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends IndexController
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.user.user.create',[]);
+        return view('admin_page.user.user.create', []);
     }
 
     /**
@@ -77,9 +77,9 @@ class UserController extends IndexController
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.user.user.edit',[
+        return view('admin_page.user.user.edit', [
             'user' => $user,
-            ]);
+        ]);
     }
 
     /**
@@ -90,6 +90,10 @@ class UserController extends IndexController
      */
     public function update(UserFormRequest $request, User $user)
     {
+        $request->merge([
+            'password' => bcrypt($request->input('password')),
+        ]);
+
         $user->update($request->all());
 
         return redirect()->route('admin.user.users.index');
@@ -114,7 +118,7 @@ class UserController extends IndexController
      */
     public function status(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
 
             $item = User::find($request->input('id'));
 
@@ -122,9 +126,10 @@ class UserController extends IndexController
             $item->save();
 
             $response = [
-                "id" => $item->id,
-                "active" => $item->activated
-                ];
+                "id"     => $item->id,
+                "active" => $item->activated,
+            ];
+
             return json_encode($response);
         }
 

@@ -21,15 +21,12 @@
     <link href="/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet"/>
     <link href="/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet"/>
     <link href="/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
+
     <!-- Custom CSS -->
     <link href="/main/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="/main/css/colors/blue.css" id="theme" rel="stylesheet">
-    <style>
-        .form {
-            padding: 15px;
-        }
-    </style>
+
 </head>
 
 <body class="fix-header card-no-border">
@@ -40,7 +37,6 @@
     </svg>
 </div>
 
-
 <div id="main-wrapper">
 
     @include('admin_page.layout.header')
@@ -48,10 +44,7 @@
 
     <div class="page-wrapper">
         <div class="container-fluid">
-
             @yield('content')
-
-
         </div>
     </div>
 
