@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('address')->nullable();
             $table->string('postcode')->nullable();
             $table->decimal('total')->default(00.00);
+            $table->decimal('total_remains')->default(00.00);
             $table->unsignedTinyInteger('quantity')->default(1);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

@@ -32,6 +32,13 @@
                         <input name="customer_id" type="hidden" value="1">
 
                         <div class="form-group m-t-40 row">
+                            <label for="quantity" class="col-2 col-form-label">Количество</label>
+                            <div class="col-10">
+                                <input name="quantity" type="text" class="form-control" value="" id="quantity">
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-40 row">
                             <label for="total" class="col-2 col-form-label">Итого</label>
                             <div class="col-10">
                                 <input name="total" type="text" class="form-control" value="" id="total">
@@ -39,9 +46,9 @@
                         </div>
 
                         <div class="form-group m-t-40 row">
-                            <label for="quantity" class="col-2 col-form-label">Количество</label>
+                            <label for="total_remains" class="col-2 col-form-label">К оплате</label>
                             <div class="col-10">
-                                <input name="quantity" type="text" class="form-control" value="" id="quantity">
+                                <input name="total_remains" type="text" class="form-control" value="" id="total_remains">
                             </div>
                         </div>
 

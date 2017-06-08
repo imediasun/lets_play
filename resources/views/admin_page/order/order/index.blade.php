@@ -32,6 +32,7 @@
                                 <th class="min-tablet">Клиент</th>
                                 <th class="min-tablet">E-Mail</th>
                                 <th class="min-tablet">Итого</th>
+                                <th class="min-tablet">К оплате</th>
                                 <th class="min-tablet">Дата добавления</th>
                                 <th class="min-desktop">Количество</th>
                                 <th class="min-desktop">Действие</th>
@@ -45,6 +46,7 @@
                                     <td>{{ $order->customer->first_name . ' ' . $order->customer->last_name }}</td>
                                     <td>{{ $order->customer->email }}</td>
                                     <td>{{ $order->total }}</td>
+                                    <td>{{ $order->total_remains }}</td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->quantity }}</td>
                                     <td>
