@@ -101,7 +101,6 @@ Route::group([
 
     Route::group(['as' => 'customer.', 'namespace' => 'Customer'], function () {
         Route::resource('customers', 'CustomerController');
-        Route::put('customer/status', ['as' => 'customers.status', 'uses' => 'CustomerController@status']);
         Route::resource('groups', 'GroupController');
         Route::put('group/status', ['as' => 'groups.status', 'uses' => 'GroupController@status']);
     });

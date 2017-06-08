@@ -108,29 +108,4 @@ class CustomerController extends IndexController
 
         return 'success';
     }
-
-    /**
-     * Change active
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|string
-     */
-    public function status(Request $request)
-    {
-        if ($request->ajax()) {
-
-            $item = Customer::find($request->input('id'));
-
-            $item->active = 1 - $item->active;
-            $item->save();
-
-            $response = [
-                "id"     => $item->id,
-                "active" => $item->active,
-            ];
-
-            return json_encode($response);
-        }
-
-        return redirect()->route('admin.customer.customers.index');
-    }
 }
