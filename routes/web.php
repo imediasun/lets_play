@@ -117,9 +117,6 @@ Route::group([
     // Order
     Route::group(['as' => 'order.', 'namespace' => 'Order'], function () {
         Route::resource('orders', 'OrderController');
-
-        // TODO: посмотреть почему не работает destroy
         Route::resource('orders-statuses', 'StatusController');
-        Route::get('orders-statuses/{orders_status}/delete', ['as' => 'orders-statuses.delete', 'uses' => 'StatusController@delete']);
     });
 });

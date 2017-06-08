@@ -25,7 +25,8 @@
                     <h4 class="card-title">Статусы</h4>
                     <h6 class="card-subtitle">Статусы заказов</h6>
                     <div class="table-responsive m-t-40">
-                        <table id="demo-dt-basic" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+                        <table id="demo-dt-basic" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>Название</th>
@@ -33,7 +34,6 @@
                                 <th class="min-desktop">Действие</th>
                             </tr>
                             </thead>
-
                             <tbody>
                             @foreach ($statuses as $status)
                                 <tr>
@@ -45,11 +45,8 @@
                                            data-toggle="tooltip"
                                            data-original-title="Редактировать"
                                         ></a>
-                                        {{--<a href="{{ route('admin.order.orders-statuses.destroy', ['id'=>$status->id]) }}"--}}
-                                           {{--class="delete btn btn-danger btn-icon icon-lg fa fa-times"--}}
-                                        {{--></a>--}}
                                         <a class="delete btn btn-danger btn-icon fa fa-times"
-                                           href="<?= route('admin.order.orders-statuses.delete', ['id' => $status->id]) ?>"
+                                           href="{{ route('admin.order.orders-statuses.destroy', ['id' => $status->id]) }}"
                                            data-toggle="tooltip"
                                            data-original-title="Удалить"
                                         ></a>
@@ -57,8 +54,8 @@
                                 </tr>
                             @endforeach
                             </tbody>
-
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -69,28 +66,23 @@
 
 @section('scripts')
     <script>
-        (function( $ ) {
+        (function ($) {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-//            $('.delete').on('click', function (e) {
-//                if (!confirm('Are you sure you want to delete?')) return false;
-//                e.preventDefault();
-//                $.post({
-//                    type: 'DELETE',  // destroy Method
-//                    url: $(this).attr("href")
-//                }).done(function (data) {
-//                    console.log(data);
-//                    location.reload(true);
-//                });
-//            });
-            $('.delete').click(function (e) {
-                if (!confirm('Are you sure you want to delete?')) {
-                    return false;
-                }
+            $('.delete').on('click', function (e) {
+                if (!confirm('Are you sure you want to delete?')) return false;
+                e.preventDefault();
+                $.post({
+                    type: 'DELETE',  // destroy Method
+                    url: $(this).attr("href")
+                }).done(function (data) {
+                    console.log(data);
+                    location.reload(true);
+                });
             });
-        } )( jQuery );
+        })(jQuery);
     </script>
 @endsection

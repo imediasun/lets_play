@@ -104,20 +104,6 @@ class StatusController extends IndexController
     {
         $status->delete();
 
-        return redirect()
-            ->route('admin.order.orders-statuses.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param Status $status
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function delete(Status $status)
-    {
-        $status->delete();
-
-        return redirect()
-            ->route('admin.order.orders-statuses.index');
+        return 'success';
     }
 }
