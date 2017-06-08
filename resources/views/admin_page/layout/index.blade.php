@@ -14,66 +14,50 @@
     <!-- Bootstrap Core CSS -->
     <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- page CSS -->
-    <link href="/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
-    <link href="/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
-    <link href="/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
-    <link href="/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet"/>
+    <link href="/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
+    <link href="/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet"/>
+    <link href="/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet"/>
+    <link href="/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
     <!-- Custom CSS -->
     <link href="/main/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="/main/css/colors/blue.css" id="theme" rel="stylesheet">
-
-    <![endif]-->
     <style>
-        .form {padding:15px;}
+        .form {
+            padding: 15px;
+        }
     </style>
 </head>
 
 <body class="fix-header card-no-border">
-<!-- ============================================================== -->
-<!-- Preloader - style you can find in spinners.css -->
-<!-- ============================================================== -->
+
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
 </div>
 
-@include('admin_page.layout.header')
-@include('admin_page.layout.navigation')
 
-<!-- ============================================================== -->
-<!-- Page wrapper  -->
-<!-- ============================================================== -->
-<div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
-    <div class="container-fluid">
+<div id="main-wrapper">
 
+    @include('admin_page.layout.header')
+    @include('admin_page.layout.navigation')
 
-  @yield('content')
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            @yield('content')
 
 
+        </div>
+    </div>
+
+</div><!-- .main-wrapper -->
 
 
-<!-- ============================================================== -->
-<!-- footer -->
-<!-- ============================================================== -->
-<footer class="footer"> © 2017 Monster Admin by wrappixel.com </footer>
-<!-- ============================================================== -->
-<!-- End footer -->
-<!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="/assets/plugins/bootstrap/js/tether.min.js"></script>
@@ -101,10 +85,10 @@
 <!-- Style switcher -->
 <!-- ============================================================== -->
 <script>
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         // Switchery
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-        $('.js-switch').each(function() {
+        $('.js-switch').each(function () {
             new Switchery($(this)[0], $(this).data());
         });
         // For select 2
@@ -152,19 +136,19 @@
             selectableOptgroup: true
         });
         $('#public-methods').multiSelect();
-        $('#select-all').click(function() {
+        $('#select-all').click(function () {
             $('#public-methods').multiSelect('select_all');
             return false;
         });
-        $('#deselect-all').click(function() {
+        $('#deselect-all').click(function () {
             $('#public-methods').multiSelect('deselect_all');
             return false;
         });
-        $('#refresh').on('click', function() {
+        $('#refresh').on('click', function () {
             $('#public-methods').multiSelect('refresh');
             return false;
         });
-        $('#add-option').on('click', function() {
+        $('#add-option').on('click', function () {
             $('#public-methods').multiSelect('addOption', {
                 value: 42,
                 text: 'test 42',
@@ -172,39 +156,39 @@
             });
             return false;
         });
-/*        $(".ajax").select2({
-            ajax: {
-                url: "https://api.github.com/search/repositories",
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        q: params.term, // search term
-                        page: params.page
-                    };
-                },
-                processResults: function(data, params) {
-                    // parse the results into the format expected by Select2
-                    // since we are using custom formatting functions we do not need to
-                    // alter the remote JSON data, except to indicate that infinite
-                    // scrolling can be used
-                    params.page = params.page || 1;
-                    return {
-                        results: data.items,
-                        pagination: {
-                            more: (params.page * 30) < data.total_count
-                        }
-                    };
-                },
-                cache: true
-            },
-            escapeMarkup: function(markup) {
-                return markup;
-            }, // let our custom formatter work
-            minimumInputLength: 1,
-            templateResult: formatRepo, // omitted for brevity, see the source of this page
-            templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
-        });*/
+        /*        $(".ajax").select2({
+         ajax: {
+         url: "https://api.github.com/search/repositories",
+         dataType: 'json',
+         delay: 250,
+         data: function(params) {
+         return {
+         q: params.term, // search term
+         page: params.page
+         };
+         },
+         processResults: function(data, params) {
+         // parse the results into the format expected by Select2
+         // since we are using custom formatting functions we do not need to
+         // alter the remote JSON data, except to indicate that infinite
+         // scrolling can be used
+         params.page = params.page || 1;
+         return {
+         results: data.items,
+         pagination: {
+         more: (params.page * 30) < data.total_count
+         }
+         };
+         },
+         cache: true
+         },
+         escapeMarkup: function(markup) {
+         return markup;
+         }, // let our custom formatter work
+         minimumInputLength: 1,
+         templateResult: formatRepo, // omitted for brevity, see the source of this page
+         templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+         });*/
     });
 </script>
 <!-- end - This is for export functionality only -->
@@ -238,7 +222,7 @@
     });
 
     $('.delete_btn').click(function () {
-       
+
         var txt;
         var r = confirm("Удалить группу клиентов ?");
 
@@ -267,15 +251,15 @@
     });
 
 
-    $('.activated_clients_group').change(function(){
-        var id=$(this).parent('td').parent('tr').find('.user_id').val();
+    $('.activated_clients_group').change(function () {
+        var id = $(this).parent('td').parent('tr').find('.user_id').val();
 
-        if($(this).is(":checked")){
-            var activate='on';
+        if ($(this).is(":checked")) {
+            var activate = 'on';
 
         }
-        else{
-            var activate='off';
+        else {
+            var activate = 'off';
 
         }
 
@@ -283,7 +267,7 @@
             type: "POST",
             dataType: 'json',
             url: '/admin/func_edit_activation_clents_group',
-            data: {id: id, activate:activate}, // serializes the form's elements.
+            data: {id: id, activate: activate}, // serializes the form's elements.
             success: function (data) {
             }
 
