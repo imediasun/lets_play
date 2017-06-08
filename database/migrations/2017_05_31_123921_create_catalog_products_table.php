@@ -17,10 +17,11 @@ class CreateCatalogProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id')->index();
             $table->string('name')->required();
-            $table->string('art')->default('');
+            $table->string('art')->required();
+            $table->decimal('price', 13, 2)->default(0.00);
+            $table->unsignedInteger('qnt')->default(0);
             $table->text('description')->nullable();
             $table->text('description2')->nullable();
-            $table->unsignedInteger('qnt')->default(0);
             $table->boolean('active')->default(0);
 
             $table->string('image_small')->default(0);

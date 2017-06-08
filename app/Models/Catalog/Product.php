@@ -11,23 +11,24 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     /**
-     * The database table used by the model.
-     * @var string
-     */
-    protected $table = 'catalog_products';
-
-    /**
      * @var array  fields to save
      */
     protected $fillable = [
         'category_id',
         'name',
         'art',
+        'price',
+        'qnt',
         'description',
         'description2',
-        'qnt',
         'active',
     ];
+
+    /**
+     * The database table used by the model.
+     * @var string
+     */
+    protected $table = 'catalog_products';
 
     /**
      * Category of product

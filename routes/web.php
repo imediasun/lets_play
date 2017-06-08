@@ -106,14 +106,16 @@ Route::group([
         Route::put('group/status', ['as' => 'groups.status', 'uses' => 'GroupController@status']);
     });
 
+    // Catalog
     Route::group(['as' => 'catalog.', 'namespace' => 'Catalog'], function () {
         Route::resource('categories', 'CategoryController');
         Route::put('category/status', ['as' => 'categories.status', 'uses' => 'CategoryController@status']);
 
         Route::resource('products', 'ProductController');
-        Route::get('products/{products}/delete', ['as' => 'products.delete', 'uses' => 'ProductController@delete']);
+        Route::put('product/status', ['as' => 'products.status', 'uses' => 'ProductController@status']);
     });
 
+    // Order
     Route::group(['as' => 'order.', 'namespace' => 'Order'], function () {
         Route::resource('orders', 'OrderController');
 

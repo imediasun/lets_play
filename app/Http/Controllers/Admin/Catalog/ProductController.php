@@ -21,14 +21,15 @@ class ProductController extends IndexController
      */
     public function index()
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $data['content']['products'] = Product::all();
+        $products = Product::orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
-        $this->template = 'admin_page/catalog/product/index';
-
-        return $this->renderOutput($data);
+        return view('admin_page.catalog.product.index', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -37,14 +38,11 @@ class ProductController extends IndexController
      */
     public function create()
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $data['content']['sel_categories'] = Category::pluck('name', 'id');
-
-        $this->template = 'admin_page/catalog/product/create';
-
-        return $this->renderOutput($data);
+        return view('admin_page.catalog.product.create', [
+            'sel_categories' => Category::pluck('name', 'id'),
+        ]);
     }
 
     /**
@@ -63,7 +61,7 @@ class ProductController extends IndexController
 
     /**
      * Display the specified resource.
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -78,15 +76,12 @@ class ProductController extends IndexController
      */
     public function edit(Product $product)
     {
-        $this->user = Auth::user();
-        $data['nav']['menu'] = parent::menu();
+        view()->share('menu', parent::menu());
 
-        $data['content']['product'] = $product;
-        $data['content']['sel_categories'] = Category::pluck('name', 'id');
-
-        $this->template = 'admin_page/catalog/product/edit';
-
-        return $this->renderOutput($data);
+        return view('admin_page.catalog.product.edit', [
+            'sel_categories' => Category::pluck('name', 'id'),
+            'product'        => $product,
+        ]);
     }
 
     /**
@@ -100,30 +95,44 @@ class ProductController extends IndexController
         $product->update($request->all());
 
         return redirect()
-            ->route('admin.catalog.products.index', [$product]);
+            ->route('admin.catalog.products.index');
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      * @param Product $product
-     * @return \Illuminate\Http\RedirectResponse
+     * @return string
      */
-    public function delete(Product $product)
+    public function destroy(Product $product)
     {
         $product->delete();
 
-        return redirect()
-            ->route('admin.catalog.products.index');
+        return 'success';
+    }
+
+    /**
+     * Change status
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|string
+     */
+    public function status(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $item = Product::find($request->input('id'));
+
+            $item->active = 1 - $item->active;
+            $item->save();
+
+            $response = [
+                'id'     => $item->id,
+                'active' => $item->active,
+            ];
+
+            return json_encode($response);
+        }
+
+        return redirect()->route('admin.catalog.products.index');
     }
 }

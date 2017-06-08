@@ -91,7 +91,7 @@ class CategoryController extends IndexController
         $category->update($request->all());
 
         return redirect()
-            ->route('admin.catalog.categories.index', [$category]);
+            ->route('admin.catalog.categories.index');
     }
 
     /**
