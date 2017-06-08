@@ -103,6 +103,7 @@ Route::group([
         Route::resource('customers', 'CustomerController');
         Route::resource('groups', 'GroupController');
         Route::put('group/status', ['as' => 'groups.status', 'uses' => 'GroupController@status']);
+        Route::resource('deals', 'DealController');
     });
 
     // Catalog

@@ -47,7 +47,7 @@ class AdminCategoriesTableSeeder extends Seeder
                 'parent_id' => 3,
                 'name'      => 'Названия сделок',
                 'icon'      => 'fa-envelope',
-                'link'      => '/admin/deals_names',
+                'link'      => '/admin/deals',
             ],
 
             [
