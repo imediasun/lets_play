@@ -44,6 +44,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group m-t-40 row">
+                            <label for="active" class="col-2 col-form-label">Активировать</label>
+                            <div class="col-10">
+                                <div class="checkbox">
+                                    <input type="hidden" name="active" value="0">
+                                    <input type="checkbox"
+                                           name="active"
+                                           value="1"
+                                           {{ $category->active ? ' checked' : '' }}
+                                           class="js-switch"
+                                           data-color="#7460ee"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group m-b-0">
                             <div class="offset-sm-2 col-sm-10">
                                 <button type="submit" class="btn btn-info waves-effect waves-light">Сохранить</button>

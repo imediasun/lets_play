@@ -72,6 +72,22 @@
                         </div>
 
                         <div class="form-group m-t-40 row">
+                            <label for="active" class="col-2 col-form-label">Активировать</label>
+                            <div class="col-10">
+                                <div class="checkbox">
+                                    <input type="hidden" name="active" value="0">
+                                    <input type="checkbox"
+                                           name="active"
+                                           value="1"
+                                           {{ $product->active ? ' checked' : '' }}
+                                           class="js-switch"
+                                           data-color="#7460ee"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-40 row">
                             <label for="description" class="col-2 col-form-label">Описание</label>
                             <div class="col-10">
                                 <textarea name="description" type="text" class="form-control" rows="5">{{ $product->description }}</textarea>
