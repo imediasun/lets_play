@@ -58,15 +58,38 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inlineFormCustomSelect" class="col-2 col-form-label">Группа клиентов</label>
+                            <label for="group_id" class="col-2 col-form-label">Группа клиентов</label>
                             <div class="col-10">
-                                <select name="group_id" class="custom-select col-12" id="inlineFormCustomSelect">
-                                    @foreach($groups as $group)
-                                        <option value="{{$group->id}}">{{$group->name}}</option>
+                                <select name="group_id" class="custom-select col-12" id="group_id">
+                                    @foreach ($sel_groups as $id => $name)
+                                        <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="contact_type_id" class="col-2 col-form-label">Тип контакта</label>
+                            <div class="col-10">
+                                <select name="contact_type_id" class="custom-select col-12" id="contact_type_id">
+                                    @foreach ($sel_contact_types as $id => $type)
+                                        <option value="{{ $id }}">{{ $type }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="contact_source_id" class="col-2 col-form-label">Источник контакта</label>
+                            <div class="col-10">
+                                <select name="contact_source_id" class="custom-select col-12" id="contact_source_id">
+                                    @foreach ($sel_contact_sources as $id => $source)
+                                        <option value="{{ $id }}">{{ $source }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div class="form-group m-b-0">
                             <div class="offset-sm-2 col-sm-10">

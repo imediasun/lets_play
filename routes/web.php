@@ -104,6 +104,8 @@ Route::group([
         Route::resource('groups', 'GroupController');
         Route::put('group/status', ['as' => 'groups.status', 'uses' => 'GroupController@status']);
         Route::resource('deals', 'DealController');
+        Route::resource('contact-sources', 'ContactSourceController');
+        Route::resource('contact-types', 'ContactTypeController');
     });
 
     // Catalog

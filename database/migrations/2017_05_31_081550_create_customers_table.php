@@ -16,6 +16,8 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('group_id');
+            $table->unsignedInteger('contact_source_id');
+            $table->unsignedInteger('contact_type_id');
             $table->string('email')->required();
             $table->string('phone')->required();
             $table->string('first_name')->required();
@@ -26,8 +28,15 @@ class CreateCustomersTable extends Migration
 
             $table->foreign('group_id')
                 ->references('id')
-                ->on('customers_groups')
-                ->delete('cascade');
+                ->on('customers_groups');
+
+            $table->foreign('contact_source_id')
+                ->references('id')
+                ->on('customers_contact_sources');
+
+            $table->foreign('contact_type_id')
+                ->references('id')
+                ->on('customers_contact_types');
         });
     }
 

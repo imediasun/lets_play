@@ -87,6 +87,19 @@ class AdminCategoriesTableSeeder extends Seeder
                 'icon'      => 'fa-folder-open-o',
                 'link'      => '/admin/orders-statuses',
             ],
+
+            [
+                'parent_id' => 3,
+                'name'      => 'Источники контактов',
+                'icon'      => 'fa-folder-open-o',
+                'link'      => '/admin/contact-sources',
+            ],
+            [
+                'parent_id' => 3,
+                'name'      => 'Типы контактов',
+                'icon'      => 'fa-folder-open-o',
+                'link'      => '/admin/contact-types',
+            ],
         ]);
 
         DB::table('center_admin_categories')->insert([

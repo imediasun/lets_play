@@ -45,10 +45,10 @@
                                     <td>{{ $customer->first_name . ' ' . $customer->last_name }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->group->name }}</td>
-                                    <td>-</td>
+                                    <td>{{ $customer->contactSource->title }}</td>
                                     <td>-</td>
                                     <td>{{ $customer->created_at }}</td>
-                                    <td>-</td>
+                                    <td>{{ $customer->contactType->title }}</td>
                                     <td>
                                         <a class="btn btn-primary btn-icon fa fa-edit"
                                            href="{{ route('admin.customer.customers.edit', ['id' => $customer->id]) }}"

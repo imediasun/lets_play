@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Customer;
 
 use App\Http\Controllers\Admin\IndexController;
+use App\Models\Customer\ContactSource;
+use App\Models\Customer\ContactType;
 use App\Models\Customer\Customer;
 use App\Http\Requests\CustomerFormRequest;
 use App\Models\Customer\Group;
@@ -24,7 +26,7 @@ class CustomerController extends IndexController
         view()->share('menu', parent::menu());
 
         $data = Customer::orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
+            //->orderBy('updated_at', 'desc')
             ->get();
 
         return view('admin_page.customer.customer.index', [
@@ -41,7 +43,9 @@ class CustomerController extends IndexController
         view()->share('menu', parent::menu());
 
         return view('admin_page.customer.customer.create', [
-            'groups' => Group::where('active', '=', '1')->get(),
+            'sel_groups'          => Group::where('active', '=', '1')->pluck('name', 'id'),
+            'sel_contact_types'   => ContactType::pluck('title', 'id'),
+            'sel_contact_sources' => ContactSource::pluck('title', 'id'),
         ]);
     }
 
@@ -79,8 +83,10 @@ class CustomerController extends IndexController
         view()->share('menu', parent::menu());
 
         return view('admin_page.customer.customer.edit', [
-            'customer' => $customer,
-            'groups'   => Group::where('active', '=', '1')->get(),
+            'customer'            => $customer,
+            'sel_groups'          => Group::where('active', '=', '1')->pluck('name', 'id'),
+            'sel_contact_types'   => ContactType::pluck('title', 'id'),
+            'sel_contact_sources' => ContactSource::pluck('title', 'id'),
         ]);
     }
 

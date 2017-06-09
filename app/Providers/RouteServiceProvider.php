@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Catalog\Category;
 use App\Models\Catalog\Product;
+use App\Models\Customer\ContactSource;
+use App\Models\Customer\ContactType;
 use App\Models\Order\Order;
 use App\Models\Order\Status;
 use Illuminate\Support\Facades\Route;
@@ -27,12 +29,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // TODO: singe names
         Route::model('users', Category::class);
-        Route::model('categories', Category::class);
+
         Route::model('categories', Category::class);
         Route::model('products', Product::class);
+
         Route::model('orders', Order::class);
         Route::model('orders_status', Status::class);
+
+        Route::model('contact_source', ContactSource::class);
+        Route::model('contact_type', ContactType::class);
 
         parent::boot();
     }

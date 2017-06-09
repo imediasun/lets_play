@@ -22,6 +22,8 @@ class Customer extends Model
      */
     protected $fillable = [
         'group_id',
+        'contact_type_id',
+        'contact_source_id',
         'email',
         'phone',
         'first_name',
@@ -35,5 +37,21 @@ class Customer extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    /**
+     * Get the contact type that owns the customer.
+     */
+    public function contactType()
+    {
+        return $this->belongsTo(ContactType::class);
+    }
+
+    /**
+     * Get the contact source that owns the customer.
+     */
+    public function contactSource()
+    {
+        return $this->belongsTo(ContactSource::class);
     }
 }
