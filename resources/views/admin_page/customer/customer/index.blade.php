@@ -56,7 +56,10 @@
                                            data-original-title="Редактировать"
                                         ></a>
                                         <a href="{{ route('admin.customer.customers.destroy', ['id'=>$customer->id]) }}"
-                                           class="delete btn btn-danger btn-icon icon-lg fa fa-times"></a>
+                                           class="delete btn btn-danger btn-icon icon-lg fa fa-times"
+                                           data-toggle="tooltip"
+                                           data-original-title="Удалить"
+                                        ></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,11 +77,7 @@
 @section('scripts')
     <script>
         (function ($) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+
             $('.delete').on('click', function (e) {
                 if (!confirm('Are you sure you want to delete?')) return false;
                 e.preventDefault();
@@ -90,6 +89,7 @@
                     location.reload(true);
                 });
             });
+
         })(jQuery);
     </script>
 @endsection

@@ -30,11 +30,13 @@ class CreateOrdersTable extends Migration
 
             $table->foreign('status_id')
                 ->references('id')
-                ->on('order_statuses');
+                ->on('order_statuses')
+                ->delete('cascade');
 
             $table->foreign('customer_id')
                 ->references('id')
-                ->on('customers');
+                ->on('customers')
+                ->delete('cascade');
         });
     }
 
@@ -45,6 +47,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::dropIfExists('orders');
     }
 }

@@ -57,10 +57,10 @@
                                            data-toggle="tooltip"
                                            data-original-title="Редактировать"
                                         ></a>
-                                        <a class="btn btn-danger btn-icon fa fa-times"
+                                        <a class="delete btn btn-danger btn-icon fa fa-times"
                                            href="{{ route('admin.catalog.products.destroy', ['id' => $product->id]) }}"
-                                           data-toggle="modal"
-                                           data-target="#modalDeleteElement"
+                                           data-toggle="tooltip"
+                                           data-original-title="Удалить"
                                         ></a>
                                     </td>
                                 </tr>
@@ -74,13 +74,24 @@
         </div>
     </div>
 
-    @include('admin_page.modals.delete', ['href' => route('admin.catalog.products.destroy', ['id' => $product->id])])
-
 @endsection
 
 @section('scripts')
     <script>
         (function ($) {
+
+            $('.delete').on('click', function (e) {
+                if (!confirm('Are you sure you want to delete?')) return false;
+                e.preventDefault();
+                $.post({
+                    type: 'DELETE', // Destroy Method
+                    url: $(this).attr("href")
+                }).done(function (data) {
+                    console.log(data);
+                    location.reload(true);
+                });
+            });
+
             $('.status').on('change', function (e) {
                 e.preventDefault();
                 var item = $(this);
@@ -97,6 +108,7 @@
                     }
                 });
             });
+
         })(jQuery);
     </script>
 @endsection

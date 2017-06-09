@@ -26,9 +26,9 @@ class CreateCustomersTable extends Migration
 
             $table->foreign('group_id')
                 ->references('id')
-                ->on('customers_groups');
+                ->on('customers_groups')
+                ->delete('cascade');
         });
-
     }
 
     /**

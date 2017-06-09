@@ -45,7 +45,7 @@ class CreateCatalogProductsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('catalog_products');
-        Schema::drop('catalog_categories');
+        Schema::dropIfExists('catalog_products');
+        Schema::dropIfExists('catalog_categories');
     }
 }

@@ -67,11 +67,7 @@
 @section('scripts')
     <script>
         (function ($) {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+
             $('.delete').on('click', function (e) {
                 if (!confirm('Are you sure you want to delete?')) return false;
                 e.preventDefault();
@@ -83,6 +79,7 @@
                     location.reload(true);
                 });
             });
+
         })(jQuery);
     </script>
 @endsection
