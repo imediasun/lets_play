@@ -44,6 +44,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="deals_type_id" class="col-2 col-form-label">Тип сделки</label>
+                            <div class="col-10">
+                                <select name="deals_type_id" class="custom-select col-12" id="deals_type_id">
+                                    @foreach ($sel_deal_types as $id => $type)
+                                        <option value="{{ $id }}" {{ ($id == $deal->deals_type_id) ? 'selected' : '' }}>
+                                            {{ $type }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group m-b-0">
                             <div class="offset-sm-2 col-sm-10">
                                 <button type="submit" class="btn btn-info waves-effect waves-light">Сохранить</button>

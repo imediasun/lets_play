@@ -6,6 +6,7 @@ use App\Models\Catalog\Category;
 use App\Models\Catalog\Product;
 use App\Models\Customer\ContactSource;
 use App\Models\Customer\ContactType;
+use App\Models\Customer\DealType;
 use App\Models\Order\Order;
 use App\Models\Order\Status;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,8 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::model('contact_source', ContactSource::class);
         Route::model('contact_type', ContactType::class);
+
+        Route::model('deals_type', DealType::class);
 
         parent::boot();
     }

@@ -7,12 +7,12 @@
             <h3 class="text-themecolor m-b-0 m-t-0">Создание</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('super_admin') }}">Главная</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.customer.deals.index') }}">Список сделок</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.customer.deals-types.index') }}">Список типов сделок</a></li>
                 <li class="breadcrumb-item active">Создание</li>
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
-            <a class="btn pull-right hidden-sm-down btn-success" href="{{ route('admin.customer.deals.create') }}">
+            <a class="btn pull-right hidden-sm-down btn-success" href="{{ route('admin.customer.deals-types.create') }}">
                 <i class="mdi mdi-plus-circle"></i>
                 Создать
             </a>
@@ -24,33 +24,15 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Создание</h4>
-                    <h6 class="card-subtitle">Создать сделку</h6>
+                    <h6 class="card-subtitle">Создать тип сделки</h6>
 
-                    <form class="form" action="{{ route('admin.customer.deals.store') }}" method="post">
+                    <form class="form" action="{{ route('admin.customer.deals-types.store') }}" method="post">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
 
                         <div class="form-group m-t-40 row">
-                            <label for="title" class="col-2 col-form-label">Название сделки</label>
+                            <label for="title" class="col-2 col-form-label">Название типа</label>
                             <div class="col-10">
                                 <input name="title" type="text" class="form-control" value="" id="title">
-                            </div>
-                        </div>
-
-                        <div class="form-group m-t-40 row">
-                            <label for="description" class="col-2 col-form-label">Описание сделки</label>
-                            <div class="col-10">
-                                <textarea name="description" type="text" class="form-control" id="description" rows="3"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="deals_type_id" class="col-2 col-form-label">Тип сделки</label>
-                            <div class="col-10">
-                                <select name="deals_type_id" class="custom-select col-12" id="deals_type_id">
-                                    @foreach ($sel_deal_types as $id => $type)
-                                        <option value="{{ $id }}">{{ $type }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
 

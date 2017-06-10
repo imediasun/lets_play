@@ -45,7 +45,7 @@ class AdminCategoriesTableSeeder extends Seeder
             ],
             [
                 'parent_id' => 3,
-                'name'      => 'Названия сделок',
+                'name'      => 'Сделки',
                 'icon'      => 'fa-envelope',
                 'link'      => '/admin/deals',
             ],
@@ -99,6 +99,13 @@ class AdminCategoriesTableSeeder extends Seeder
                 'name'      => 'Типы контактов',
                 'icon'      => 'fa-folder-open-o',
                 'link'      => '/admin/contact-types',
+            ],
+
+            [
+                'parent_id' => 3,
+                'name'      => 'Типы сделок',
+                'icon'      => 'fa-envelope',
+                'link'      => '/admin/deals-types',
             ],
         ]);
 

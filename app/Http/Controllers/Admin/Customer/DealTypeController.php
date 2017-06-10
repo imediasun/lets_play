@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Admin\Customer;
 
 use App\Http\Controllers\Admin\IndexController;
-use App\Http\Requests\CustomerDealFormRequest;
-use App\Models\Customer\Deal;
+use App\Http\Requests\Customer\DealTypeFormRequest;
 use App\Models\Customer\DealType;
 use Illuminate\Http\Request;
 
 /**
- * Class DealController
+ * Class DealTypeController
  * @package App\Http\Controllers\Admin\Customer
  */
-class DealController extends IndexController
+class DealTypeController extends IndexController
 {
     /**
      * Display a listing of the resource.
@@ -22,46 +21,43 @@ class DealController extends IndexController
     {
         view()->share('menu', parent::menu());
 
-        $data = Deal::orderBy('created_at', 'desc')
+        $data = DealType::orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->get();
 
-        return view('admin_page.customer.deal.index', [
-            'deals' => $data,
+        return view('admin_page.customer.deal_type.index', [
+            'types' => $data,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.customer.deal.create', [
-            'sel_deal_types' => DealType::pluck('title', 'id'),
-        ]);
+        return view('admin_page.customer.deal_type.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param CustomerDealFormRequest $request
-     * @param Deal $deal
+     * @param DealTypeFormRequest $request
+     * @param DealType $type
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CustomerDealFormRequest $request, Deal $deal)
+    public function store(DealTypeFormRequest $request, DealType $type)
     {
-        $deal->create($request->all());
+        $type->create($request->all());
 
         return redirect()
-            ->route('admin.customer.deals.index');
+            ->route('admin.customer.deals-types.index');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -71,41 +67,40 @@ class DealController extends IndexController
 
     /**
      * Show the form for editing the specified resource.
-     * @param Deal $deal
+     * @param DealType $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Deal $deal)
+    public function edit(DealType $type)
     {
         view()->share('menu', parent::menu());
 
-        return view('admin_page.customer.deal.edit', [
-            'deal'           => $deal,
-            'sel_deal_types' => DealType::pluck('title', 'id'),
+        return view('admin_page.customer.deal_type.edit', [
+            'type' => $type,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
-     * @param CustomerDealFormRequest $request
-     * @param Deal $deal
+     * @param DealTypeFormRequest $request
+     * @param DealType $type
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(CustomerDealFormRequest $request, Deal $deal)
+    public function update(DealTypeFormRequest $request, DealType $type)
     {
-        $deal->update($request->all());
+        $type->update($request->all());
 
         return redirect()
-            ->route('admin.customer.deals.index');
+            ->route('admin.customer.deals-types.index');
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param Deal $deal
+     * @param DealType $type
      * @return string
      */
-    public function destroy(Deal $deal)
+    public function destroy(DealType $type)
     {
-        $deal->delete();
+        $type->delete();
 
         return 'success';
     }
